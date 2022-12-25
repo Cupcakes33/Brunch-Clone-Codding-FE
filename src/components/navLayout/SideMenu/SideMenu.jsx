@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useLayoutEffect, useEffect, useRef } from "react";
 import { ItemBell, ItemLogoIcon, ItemSideMenulogo } from "../imgItems";
 import CommonBox from "../../common/CommonBox";
 import CommonButton from "../../common/CommonButton";
@@ -12,14 +12,25 @@ import {
   StSideMenuContentsWrapper,
   StSideMenuContentsUl,
   StSideMenuList,
-  StSideMenuListLogoBox
+  StSideMenuListLogoBox,
 } from "./style";
 
-const SideMenu = () => {
-  const [isSideMenuActive, setIsSideMenuActive] = useState(true);
+const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
+  const sideMenu = useRef();
+
+  useLayoutEffect(() => {
+    document.addEventListener("mousedown", outSideClicked);
+    return () => {
+      document.removeEventListener("mousedown", outSideClicked);
+    };
+  }, []);
+  
+  const outSideClicked = (event) => {
+    !sideMenu.current.contains(event.target) && setIsSideMenuOpen(false);
+  };
 
   return (
-    <StSideMenuContainer active={isSideMenuActive}>
+    <StSideMenuContainer active={isSideMenuOpen} ref={sideMenu}>
       {/* 로그인을 했을 경우 */}
       <StSideMenuProfileWrapper>
         <StSlideMenuBellIconBox>

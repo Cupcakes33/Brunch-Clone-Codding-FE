@@ -18,6 +18,7 @@ const StSideMenuContainer = styled.section`
 
 const StSideMenuProfileWrapper = styled.div`
   height: 25%;
+  min-height: 250px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -55,6 +56,7 @@ const StProfileImg = styled.img`
 const StSideMenuFooter = styled.div`
   width: 100%;
   height: 25%;
+  min-height: 250px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -122,8 +124,7 @@ const StSideMenuListLogoBox = styled.li`
   display: flex;
   justify-content: center;
   margin: 30px 0px;
-
-`
+`;
 
 export {
   StSideMenuContainer,
@@ -135,5 +136,5 @@ export {
   StSideMenuContentsWrapper,
   StSideMenuContentsUl,
   StSideMenuList,
-  StSideMenuListLogoBox
+  StSideMenuListLogoBox,
 };
