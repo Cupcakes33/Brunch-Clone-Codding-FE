@@ -1,11 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import KakaoConfigpage from "./pages/kakaoconfigpage/KakaoConfigpage";
+import Mypage from "./pages/mypage/Mypage";
 const Router = () => {
   return (
-    <Routes element={<Component />}>
-      <Route></Route>
-      <Route></Route>
-      <Route></Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route></Route>
+        <Route path="/" element={<KakaoConfigpage />}></Route>
+        <Route path="/mypage" element={<Mypage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
