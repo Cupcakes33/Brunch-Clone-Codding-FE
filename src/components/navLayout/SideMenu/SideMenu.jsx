@@ -24,7 +24,7 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
       document.removeEventListener("mousedown", outSideClicked);
     };
   }, []);
-  
+
   const outSideClicked = (event) => {
     !sideMenu.current.contains(event.target) && setIsSideMenuOpen(false);
   };

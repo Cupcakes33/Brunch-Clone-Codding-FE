@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavLayout from "./pages/NavLayout/NavLayout";
 import Main from "./pages/nowPage/Now";
@@ -12,10 +11,11 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<NavLayout />}>
-        <Route path="/" element={<KakaoConfigpage />}/>
-        <Route path="/mypage" element={<Mypage />} />
-        <Route></Route>
-        <Route></Route>
+          <Route path="/" element={<KakaoConfigpage />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route></Route>
+          <Route></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

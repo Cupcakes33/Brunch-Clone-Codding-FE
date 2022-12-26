@@ -4,6 +4,13 @@ import styled from "styled-components";
 
 const Post = () => {
   const [title, setTitle] = useState("");
+
+
+
+
+
+
+
   const onChangeTitle = (e) => {
     e.preventDefault();
     setTitle(e.target.value);

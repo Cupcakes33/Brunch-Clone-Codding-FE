@@ -22,8 +22,11 @@ const font = {
 
 const fontWeight = {
   light: "100",
+  // 기본값
   demiLight: "300",
+  // Lignt => demiLight
   reguler: "400",
+  // title 처럼 좀 더 굵은 거
 };
 
 const color = {

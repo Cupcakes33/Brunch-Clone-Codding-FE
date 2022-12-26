@@ -4,6 +4,7 @@ const StNav = styled.header`
   width: 100%;
   height: 80px;
   position: absolute;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
