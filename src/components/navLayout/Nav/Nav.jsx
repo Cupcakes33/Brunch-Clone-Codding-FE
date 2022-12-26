@@ -27,6 +27,7 @@ const Nav = () => {
         isSideMenuOpen={isSideMenuOpen}
         setIsSideMenuOpen={setIsSideMenuOpen}
       />
+      
       <StNav scrolled={scrolledPosition > 80 ? true : false}>
         <CommonBox flexDirection={"row"} gap={"12px"}>
           <ItemServiceMenuBtn

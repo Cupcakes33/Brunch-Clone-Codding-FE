@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useIntersectionObserve = (url) => {
-  // return : itemLists
-  // params : target, url
   const [target, setTarget] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
   const [itemLists, setItemLists] = useState([]);
@@ -15,10 +13,7 @@ const useIntersectionObserve = (url) => {
   const getMoreItem = async () => {
     // setIsLoaded(true);
 
-    const data = await axios.get(
-      // `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20`
-      url
-    );
+    const data = await axios.get(url);
     console.log(data);
 
     setItemLists((itemLists) => itemLists.concat(data.data.results));
