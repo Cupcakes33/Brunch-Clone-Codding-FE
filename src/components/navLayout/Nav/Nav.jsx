@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { ItemLogo, ItemSearchBtn, ItemServiceMenuBtn } from "../imgItems";
 import SideMenu from "../SideMenu/SideMenu";
 import CommonBox from "../../common/CommonBox";
@@ -13,7 +13,7 @@ const Nav = () => {
     setScrolledPosition(window.scrollY);
   }, 200);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener("scroll", throttleScroll);
 
     return () => {

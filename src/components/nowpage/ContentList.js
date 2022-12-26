@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import CommonBox from "../common/CommonBox";
+import spriteImg from "../../styles/spriteImg.png";
 
-const ContentList = ({ num }) => {
+const ContentList = ({ name, url }) => {
   return (
     <StContentList>
       <CommonBox
         flexDirection="column"
         width="75%"
-        // height="100%"
         height="120px"
         justifyContent="space-between"
       >
         <StContentLink>
-          <strong>{num}나도 이럴 수밖에</strong>
+          <strong>{name}</strong>
           <span>
             지금 아버지와 나는 출발 선상에 있다. 공교롭게도 우리는 한날한시에
             각자의 목적지를 향해 달리게 됐다. 누군가가 고약한 심술을
@@ -25,7 +25,7 @@ const ContentList = ({ num }) => {
         </StContentWriterBox>
       </CommonBox>
       <StThumbnailImgBox>
-        <img></img>
+        <img src={spriteImg}></img>
       </StThumbnailImgBox>
     </StContentList>
   );
