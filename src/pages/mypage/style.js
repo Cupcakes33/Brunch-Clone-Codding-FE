@@ -1,4 +1,4 @@
-import spriteImg from "../../styles/spriteImg.png";
+import spriteImg from "../../styles/img/spriteImg.png";
 import styled from "styled-components";
 
 const StNavigatorDiv = styled.div`
@@ -50,6 +50,8 @@ const StProfileDiv = styled.div`
 const StProfileTextarea = styled.textarea`
   padding: 15px 20px 13px;
   resize: none;
+  width: 100%;
+  outline: none;
 `;
 const StProfileWriterUserBox = styled.div`
   margin-top: 57px;
@@ -58,10 +60,6 @@ const StProfileWriterUserBox = styled.div`
 const StProfileWriterInfoBox = styled.div`
   margin-top: 37px;
   padding-bottom: 13px;
-`;
-const StProfileUserTextarea = styled.textarea`
-  resize: none;
-  padding: 15px 20px 13px;
 `;
 const StProfileUserInfoBox = styled.div`
   border: 1px solid #eee;
@@ -115,7 +113,6 @@ export {
   StNavigatorDiv,
   StNavigatorImg,
   StNavigatorInput,
-  StProfileUserTextarea,
   StProfileH3,
   StProfileUserInfoBox,
   StNavigatorSpan,

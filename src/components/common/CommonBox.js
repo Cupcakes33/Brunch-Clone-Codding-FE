@@ -22,6 +22,8 @@ const CommonBox = ({
   color,
   border,
   borderRadius,
+  borderBottom,
+  paddingBottom,
 }) => {
   const styles = {
     children,
@@ -45,6 +47,8 @@ const CommonBox = ({
     color,
     border,
     borderRadius,
+    borderBottom,
+    paddingBottom,
   };
   return <StBox {...styles}>{children}</StBox>;
 };
@@ -74,6 +78,8 @@ const StBox = styled.div`
   color: ${({ color }) => color};
   border: ${({ border }) => border};
   border-radius: ${({ borderRadius }) => borderRadius};
+  border-bottom: ${({ borderBottom }) => borderBottom};
+  padding-bottom: ${({ paddingBottom }) => paddingBottom};
 `;
 
 export default CommonBox;
