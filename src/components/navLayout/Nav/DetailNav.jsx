@@ -5,8 +5,6 @@ import CommonBox from "../../common/CommonBox";
 import { StNav, StNavCenterSpan } from "./style";
 
 import useScrollDetection from "../../../hooks/useScrollDetection";
-import CommonButton from "../../common/CommonButton";
-import SerchBar from "../SearchBar/SearchBar";
 
 const Nav = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -27,10 +25,9 @@ const Nav = () => {
           />
           <ItemLogo />
         </CommonBox>
+        <StNavCenterSpan>브런치 나우</StNavCenterSpan>
         <StNavCenterSpan>설정</StNavCenterSpan>
-        {/* <StNavCenterSpan>브런치 나우</StNavCenterSpan> */}
-        {/* <ItemSearchBtn /> */}
-        <SerchBar />
+        <ItemSearchBtn />
       </StNav>
     </>
   );

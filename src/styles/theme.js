@@ -15,6 +15,7 @@ const padding = {
 const font = {
   small: "0.8rem",
   base: "1rem",
+  subTitle: "1.2rem",
   sm: "1.4rem",
   lg: "2rem",
   xl: "3rem",
@@ -44,7 +45,7 @@ const defaultTheme = {
   padding,
   font,
   color,
-  fontWeight
+  fontWeight,
 };
 
 export default defaultTheme;

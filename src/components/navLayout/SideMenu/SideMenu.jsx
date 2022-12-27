@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ItemBell, ItemLogoIcon, ItemSideMenulogo } from "../imgItems";
 import CommonBox from "../../common/CommonBox";
 import CommonButton from "../../common/CommonButton";
@@ -18,7 +18,7 @@ import {
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
   const sideMenu = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     document.addEventListener("mousedown", outSideClicked);
     return () => {
       document.removeEventListener("mousedown", outSideClicked);

@@ -19,6 +19,7 @@ const sizeType = css`
       color: ${(props) => props.theme.color.__line_border};
       border: 1px solid ${(props) => props.theme.color.__line_border};
     `}
+
 `;
 
 const Button = styled.button`
@@ -42,9 +43,10 @@ const Button = styled.button`
   ${sizeType}
 `;
 
-const CommonButton = ({ children, sizeType, colorType, ...rest }) => {
+const CommonButton = ({ children, sizeType, colorType, icon, ...rest }) => {
   return (
     <Button colorType={colorType} sizeType={sizeType} {...rest}>
+      {icon}
       {children}
     </Button>
   );
