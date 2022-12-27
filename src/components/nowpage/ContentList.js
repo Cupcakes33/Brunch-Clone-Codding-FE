@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CommonBox from "../common/CommonBox";
-import spriteImg from "../../styles/spriteImg.png";
 
 const ContentList = ({ name, url }) => {
   return (
@@ -25,7 +24,7 @@ const ContentList = ({ name, url }) => {
         </StContentWriterBox>
       </CommonBox>
       <StThumbnailImgBox>
-        <img src={spriteImg}></img>
+        <img></img>
       </StThumbnailImgBox>
     </StContentList>
   );
