@@ -13,6 +13,7 @@ const padding = {
 };
 
 const font = {
+  ss: "0.6rem",
   small: "0.8rem",
   base: "1rem",
   subTitle: "1.2rem",

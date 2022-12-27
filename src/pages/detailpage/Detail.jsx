@@ -3,11 +3,13 @@ import style from "./style";
 import styled from "styled-components";
 import Comment from "./Comment";
 import Mokdata from "./Mokdata";
+import DetailNav from "../../components/navLayout/Nav/DetailNav";
 
 const Detail = () => {
   const [visible, setVisible] = useState(false);
   return (
     <>
+      <DetailNav />
       <DetailWrap>
         <StImg
           src={

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavLayout from "./pages/NavLayout/NavLayout";
 import Main from "./pages/nowpage/NowPage";
 import KakaoConfigpage from "./pages/kakaoconfigpage/KakaoConfigpage";
 import Mypage from "./pages/mypage/Mypage";
@@ -13,14 +12,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<NavLayout />}>
-          <Route path="/config" element={<KakaoConfigpage />} />
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/now" element={<NowPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Secession />} />
-          <Route></Route>
-        </Route>
+        <Route path="/config" element={<KakaoConfigpage />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/now" element={<NowPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Secession />} />
+        <Route path="/detail" element={<Detail />} />
+        <Route></Route>
       </Routes>
     </BrowserRouter>
   );

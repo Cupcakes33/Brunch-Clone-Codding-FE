@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import throttle from "../libs/throttle";
 
 const useIntersectionObserve = (url) => {
   const [target, setTarget] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
   const [itemLists, setItemLists] = useState([]);
 
-  useEffect(() => {
-    console.log(itemLists);
-  }, [itemLists]);
+  const next = itemLists[itemLists.length - 1]?.postId;
+  console.log(itemLists);
+  console.log(next);
 
+  const nextUrl = `${url}?p=${next}`;
   const getMoreItem = async () => {
-    // setIsLoaded(true);
-
-    const data = await axios.get(url);
-    console.log(data);
-
-    setItemLists((itemLists) => itemLists.concat(data.data.results));
-    // setIsLoaded(false);
+    const data = await axios.get(nextUrl);
+    setItemLists((itemLists) => itemLists.concat(data.data.result));
   };
 
   const onIntersect = async ([entry], observer) => {
@@ -38,7 +35,7 @@ const useIntersectionObserve = (url) => {
       observer.observe(target);
     }
     return () => observer && observer.disconnect();
-  }, [target]);
+  }, [target, itemLists]);
 
   return { itemLists, setTarget };
 };
