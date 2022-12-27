@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { ItemLogo, ItemSearchBtn, ItemServiceMenuBtn } from "../imgItems";
+import {
+  ItemCommentBtn,
+  ItemHeartBtn,
+  ItemLogo,
+  ItemServiceMenuBtn,
+} from "../imgItems";
 import SideMenu from "../SideMenu/SideMenu";
 import CommonBox from "../../common/CommonBox";
-import { StNav, StNavCenterSpan } from "./style";
+import { StNav, StDetailPageNavCenterSpan } from "./style";
 
 import useScrollDetection from "../../../hooks/useScrollDetection";
+import CommonButton from "../../common/CommonButton";
 
-const Nav = () => {
+import styled from "styled-components";
+
+const DetailNav = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const scrollPosition = useScrollDetection(200);
 
@@ -25,12 +33,31 @@ const Nav = () => {
           />
           <ItemLogo />
         </CommonBox>
-        <StNavCenterSpan>브런치 나우</StNavCenterSpan>
-        <StNavCenterSpan>설정</StNavCenterSpan>
-        <ItemSearchBtn />
+        <StDetailPageNavCenterSpan>
+          <CommonButton sizeType="tag">매거진</CommonButton>
+          아빠 그리고 나
+        </StDetailPageNavCenterSpan>
+        <Stdiv>
+          <CommonBox alignItems="center" gap="5px">
+            <ItemHeartBtn checked/>
+            <span>30</span>
+          </CommonBox>
+          <CommonBox alignItems="center" gap="5px">
+            <ItemCommentBtn />
+            <span>2</span>
+          </CommonBox>
+        </Stdiv>
       </StNav>
     </>
   );
 };
 
-export default Nav;
+export default DetailNav;
+
+const Stdiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  color: ${(props) => props.theme.color.__text_sub};
+  font-weight: ${(props) => props.theme.fontWeight.demiLight};
+`;

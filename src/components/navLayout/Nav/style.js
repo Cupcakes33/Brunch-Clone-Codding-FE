@@ -32,4 +32,15 @@ const StNavCenterSpan = styled.span`
   translate: -50% -50%;
 `;
 
-export { StNav, StNavCenterSpan };
+const StDetailPageNavCenterSpan = styled(StNavCenterSpan)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: ${(props) => props.theme.font.base};
+  font-weight: ${(props) => props.theme.fontWeight.demiLight};
+  color: ${(props) => props.theme.color.__text_sub};
+`;
+
+export { StNav, StNavCenterSpan, StDetailPageNavCenterSpan };

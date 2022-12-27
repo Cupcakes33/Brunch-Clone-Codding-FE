@@ -14,20 +14,11 @@ import {
   StSideMenuList,
   StSideMenuListLogoBox,
 } from "./style";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
   const sideMenu = useRef();
-
-  useEffect(() => {
-    document.addEventListener("mousedown", outSideClicked);
-    return () => {
-      document.removeEventListener("mousedown", outSideClicked);
-    };
-  }, []);
-
-  const outSideClicked = (event) => {
-    !sideMenu.current.contains(event.target) && setIsSideMenuOpen(false);
-  };
+  useOutsideClick(sideMenu, setIsSideMenuOpen);
 
   return (
     <StSideMenuContainer active={isSideMenuOpen} ref={sideMenu}>

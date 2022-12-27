@@ -15,11 +15,11 @@ const sizeType = css`
     css`
       width: max-content;
       height: ${(props) => props.theme.font.sm};
-      padding: 0px 10px;
-      color: ${(props) => props.theme.color.__line_border};
-      border: 1px solid ${(props) => props.theme.color.__line_border};
+      padding: 0px 6px;
+      color: ${(props) => props.theme.color.__text_sub};
+      border: 1px solid ${(props) => props.theme.color.__text_sub};
+      font-size: ${(props) => props.theme.font.small};
     `}
-
 `;
 
 const Button = styled.button`
