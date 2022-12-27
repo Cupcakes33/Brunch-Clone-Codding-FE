@@ -9,6 +9,11 @@ const Detail = () => {
   return (
     <>
       <DetailWrap>
+        <StImg
+          src={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
+          }
+        />
         <StTitle>여기에는 제목이 들어간다</StTitle>
       </DetailWrap>
 
@@ -44,6 +49,8 @@ const DetailWrap = styled.text`
   background-color: white;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  z-index: 2;
 `;
 
 const ItemWrap = styled.div`
@@ -76,6 +83,15 @@ const Body = styled.div`
 const StTitle = styled.text`
   font-size: 40px;
   margin: 150px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 50vw;
+  top: 25%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: white;
 `;
 
 const Stcommentbtn = styled.button`
@@ -100,6 +116,15 @@ const StContainer = styled.div`
   width: 700px;
   min-width: 700px;
   height: 90px;
-  text-align-last: center;
   margin: auto;
+`;
+
+const StImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  position: absolute;
+  z-index: 3;
 `;
