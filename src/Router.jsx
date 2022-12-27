@@ -7,7 +7,8 @@ import Detail from "./pages/detailpage/Detail";
 import Post from "./pages/detailpage/Post";
 import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
-import Secession from "./pages/secession/Secession";
+import Secession from "./pages/secession/Secession";
+
 
 const Router = () => {
   return (
@@ -19,8 +20,9 @@ const Router = () => {
           <Route path="/now" element={<NowPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/secession" element={<Secession />} />
-
-          <Route></Route>
+          <Route path="/" element={<Secession />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/post" element={<Post />} />
         </Route>
       </Routes>
     </BrowserRouter>

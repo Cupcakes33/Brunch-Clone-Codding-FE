@@ -3,8 +3,11 @@ import style from "./style";
 import styled from "styled-components";
 import Comment from "./Comment";
 import Mokdata from "./Mokdata";
+import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
+  // const { id } = useParams()
+  // const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -34,6 +37,19 @@ const Detail = () => {
           <hr />
           {visible && <Comment />}
         </StCommentdiv>
+        <StUserDiv>
+          <StUser>
+            <StBrunchImg
+              src={
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
+              }
+            />
+            <Sth1Name>닉네임이 들어갑니다</Sth1Name>
+            <Sth4Name>간단한 닉네임이 들어가지요</Sth4Name>
+            <Sth4Content>브런치 소개글입니다~</Sth4Content>
+            <Sth4Content>구독자 36</Sth4Content>
+          </StUser>
+        </StUserDiv>
       </StContainer>
     </>
   );
@@ -41,7 +57,7 @@ const Detail = () => {
 
 export default Detail;
 
-const DetailWrap = styled.text`
+const DetailWrap = styled.div`
   border-bottom: 1px solid black;
   display: flex;
   height: 480px;
@@ -49,8 +65,8 @@ const DetailWrap = styled.text`
   background-color: white;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  z-index: 2;
+  position: relative;
+  z-index: 1;
 `;
 
 const ItemWrap = styled.div`
@@ -92,6 +108,7 @@ const StTitle = styled.text`
   position: absolute;
   transform: translate(-50%, -50%);
   color: white;
+  z-index: 3;
 `;
 
 const Stcommentbtn = styled.button`
@@ -109,7 +126,7 @@ const Stcommentbtn = styled.button`
 
 const StCommentdiv = styled.div`
   margin-top: 200px;
-  height: 500px;
+  height: 200px;
 `;
 
 const StContainer = styled.div`
@@ -125,6 +142,43 @@ const StImg = styled.img`
   object-fit: fill;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  position: absolute;
+
   z-index: 3;
+`;
+
+const StUserDiv = styled.div`
+  height: 171.5px;
+
+  width: 100%;
+  background-color: #fbfbfb;
+  margin: 0 auto;
+`;
+
+const StUser = styled.div`
+  margin-top: 150px;
+  height: 300px;
+
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fbfbfb;
+`;
+
+const Sth1Name = styled.div`
+  font-size: xx-large;
+`;
+
+const Sth4Name = styled.div``;
+
+const Sth4Content = styled.div`
+  margin-top: 55px;
+`;
+
+const StBrunchImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  align-items: flex-end;
+  float: right;
 `;
