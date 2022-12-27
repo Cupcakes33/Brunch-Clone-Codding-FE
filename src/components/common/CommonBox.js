@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const CommonBox = ({
   children,
+  maxWidth,
   width,
+  maxHeight,
   height,
   display,
   position,
@@ -24,10 +26,14 @@ const CommonBox = ({
   borderRadius,
   borderBottom,
   paddingBottom,
+  textAlign,
+  fontWeight,
 }) => {
   const styles = {
     children,
+    maxWidth,
     width,
+    maxHeight,
     height,
     display,
     position,
@@ -49,6 +55,8 @@ const CommonBox = ({
     borderRadius,
     borderBottom,
     paddingBottom,
+    textAlign,
+    fontWeight,
   };
   return <StBox {...styles}>{children}</StBox>;
 };
@@ -58,8 +66,10 @@ CommonBox.defaultProps = {
 };
 
 const StBox = styled.div`
+  max-width: ${({ maxWidth }) => maxWidth};
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  max-height: ${({ maxHeight }) => maxHeight};
   position: ${({ position }) => position};
   display: ${({ display }) => display};
   top: ${({ top }) => top};
@@ -80,6 +90,8 @@ const StBox = styled.div`
   border-radius: ${({ borderRadius }) => borderRadius};
   border-bottom: ${({ borderBottom }) => borderBottom};
   padding-bottom: ${({ paddingBottom }) => paddingBottom};
+  text-align: ${({ textAlign }) => textAlign};
+  font-weight: ${({ fontWeight }) => fontWeight};
 `;
 
 export default CommonBox;
