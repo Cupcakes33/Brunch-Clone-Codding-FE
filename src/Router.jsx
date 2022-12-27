@@ -9,7 +9,6 @@ import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
 import Secession from "./pages/secession/Secession";
 
-
 const Router = () => {
   return (
     <BrowserRouter>
