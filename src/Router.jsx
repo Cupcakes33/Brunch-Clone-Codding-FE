@@ -7,8 +7,7 @@ import Detail from "./pages/detailpage/Detail";
 import Post from "./pages/detailpage/Post";
 import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
-import Secession from "./pages/secession/Secession";
-
+import Secession from "./pages/secession/Secession";
 
 const Router = () => {
   return (
