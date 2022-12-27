@@ -9,6 +9,7 @@ import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
 import Secession from "./pages/secession/Secession";
 
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ const Router = () => {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/now" element={<NowPage />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/secession" element={<Secession />} />
           <Route path="/" element={<Secession />} />
           <Route path="/detail" element={<Detail />} />
           <Route path="/post" element={<Post />} />
