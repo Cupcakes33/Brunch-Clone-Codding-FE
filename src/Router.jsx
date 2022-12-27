@@ -18,7 +18,8 @@ const Router = () => {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/now" element={<NowPage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Secession />} />
+          <Route path="/secession" element={<Secession />} />
+
           <Route></Route>
         </Route>
       </Routes>

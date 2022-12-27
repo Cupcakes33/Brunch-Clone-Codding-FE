@@ -18,6 +18,7 @@ const CommonBox = ({
   gap,
   padding,
   margin,
+  marginTop,
   marginRight,
   marginLeft,
   backgroundColor,
@@ -25,6 +26,7 @@ const CommonBox = ({
   border,
   borderRadius,
   borderBottom,
+  paddingTop,
   paddingBottom,
   textAlign,
   fontWeight,
@@ -47,6 +49,7 @@ const CommonBox = ({
     gap,
     padding,
     margin,
+    marginTop,
     marginRight,
     marginLeft,
     backgroundColor,
@@ -54,6 +57,7 @@ const CommonBox = ({
     border,
     borderRadius,
     borderBottom,
+    paddingTop,
     paddingBottom,
     textAlign,
     fontWeight,
@@ -81,6 +85,7 @@ const StBox = styled.div`
   justify-content: ${({ justifyContent }) => justifyContent};
   gap: ${({ gap }) => gap};
   margin: ${({ margin }) => margin};
+  margin-top: ${({ marginTop }) => marginTop};
   margin-right: ${({ marginRight }) => marginRight};
   margin-left: ${({ marginLeft }) => marginLeft};
   padding: ${({ padding }) => padding};
@@ -89,6 +94,7 @@ const StBox = styled.div`
   border: ${({ border }) => border};
   border-radius: ${({ borderRadius }) => borderRadius};
   border-bottom: ${({ borderBottom }) => borderBottom};
+  padding-top: ${({ paddingTop }) => paddingTop};
   padding-bottom: ${({ paddingBottom }) => paddingBottom};
   text-align: ${({ textAlign }) => textAlign};
   font-weight: ${({ fontWeight }) => fontWeight};
