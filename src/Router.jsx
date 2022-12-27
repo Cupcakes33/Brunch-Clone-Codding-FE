@@ -19,7 +19,8 @@ const Router = () => {
           <Route path="/now" element={<NowPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Secession />} />
-          <Route></Route>
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/post" element={<Post />} />
         </Route>
       </Routes>
     </BrowserRouter>

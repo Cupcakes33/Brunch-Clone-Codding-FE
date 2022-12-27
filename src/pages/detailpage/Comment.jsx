@@ -8,6 +8,7 @@ const Comment = () => {
     e.preventDefault();
     setComment(e.target.value);
   };
+
   return (
     <StCommentList>
       <StCommentCount>
@@ -70,7 +71,7 @@ const Stcommentdiv = styled.div`
 `;
 
 const StCommentList = styled.div`
-  margin-top: 200px;
+  margin-top: 20px;
   min-width: 1020px;
   padding-bottom: 142px;
   padding-top: 44px;
@@ -109,3 +110,13 @@ const StImg = styled.img`
   height: 50px;
   border-radius: 50%;
 `;
+
+const StCommentlistWraper = styled.div``;
+
+const StCommentBox = styled.div``;
+
+const StContent = styled.div``;
+
+const StButton = styled.button``;
+
+const StUpdateButton = styled.button``;
