@@ -1,33 +1,45 @@
-import React, { useState } from "react";
-import style from "./style";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Comment from "./Comment";
-import Mokdata from "./Mokdata";
+import Comment from "./CommentForm";
 import DetailNav from "../../components/navLayout/Nav/DetailNav";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useParams } from "react-router-dom";
+import { __getResult } from "../../redux/slices/detailSlice";
 
 const Detail = () => {
-  // const { id } = useParams()
-  // const dispatch = useDispatch()
+  const { postid } = useParams();
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const { isLoading, detail } = useSelector((state) => state.detailReducer);
+  console.log(isLoading);
+  console.log(detail);
+
+  // console.log("id", postid);
+  const item = detail?.result;
+  console.log("item", item);
+
+  useEffect(() => {
+    dispatch(__getResult(postid));
+  }, [dispatch]);
+
+  // if (isLoading) {
+  //   return <div>로딩중....</div>;
+  // }
+
   return (
     <>
-      <DetailNav />
+      <DetailNav itemList={item} />
       <DetailWrap>
-        <StImg
-          src={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
-          }
-        />
-        <StTitle>여기에는 제목이 들어간다</StTitle>
+        <StImg src={item?.coverImage} />
+        <StTitle>{item?.title}</StTitle>
+        <StSubTitle>{item?.subtitle}</StSubTitle>
+        <StName>by {item?.writer}</StName>
+        <StTime>{item?.createdAt}</StTime>
       </DetailWrap>
 
       <StContainer>
         <Titleset>{}</Titleset>
-        <Body>
-          <Mokdata />
-        </Body>
+        <Body>{item?.content}</Body>
 
         <StCommentdiv>
           <Stcommentbtn
@@ -37,20 +49,15 @@ const Detail = () => {
           >
             {visible ? "댓글" : "댓글"}
           </Stcommentbtn>
-          <hr />
-          {visible && <Comment />}
+
+          {visible && <Comment commentList={item} />}
         </StCommentdiv>
         <StUserDiv>
           <StUser>
-            <StBrunchImg
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
-              }
-            />
-            <Sth1Name>닉네임이 들어갑니다</Sth1Name>
-            <Sth4Name>간단한 닉네임이 들어가지요</Sth4Name>
-            <Sth4Content>브런치 소개글입니다~</Sth4Content>
-            <Sth4Content>구독자 36</Sth4Content>
+            <StBrunchImg src={item?.profileImage} />
+            <Sth1Name>{item?.writer}</Sth1Name>
+            <Sth4Name>회사원</Sth4Name>
+            <Sth4Content>{item?.selfIntro}</Sth4Content>
           </StUser>
         </StUserDiv>
       </StContainer>
@@ -91,27 +98,28 @@ const Titleset = styled.div`
 `;
 
 const Body = styled.div`
-  text-align-last: center;
   margin: auto;
   font-size: 15px;
   width: 700px;
   line-height: 2;
   letter-spacing: 2px;
+  left: 25%;
 `;
 
 const StTitle = styled.text`
   font-size: 40px;
-  margin: 150px 0px 0px 0px;
+  margin: 150px 0px 0px 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  left: 50vw;
-  top: 25%;
+  width: 700px;
+  top: 40%;
   position: absolute;
   transform: translate(-50%, -50%);
-  color: white;
+  color: black;
   z-index: 3;
+  float: left;
 `;
 
 const Stcommentbtn = styled.button`
@@ -184,4 +192,47 @@ const StBrunchImg = styled.img`
   border-radius: 50%;
   align-items: flex-end;
   float: right;
+  background-color: #9d9898;
+`;
+
+const StName = styled.div`
+  float: left;
+  width: 700px;
+  margin: 0px 0px 0px 700px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  top: 95%;
+`;
+
+const StTime = styled.div`
+  float: left;
+
+  width: 700px;
+  box-sizing: border-box;
+  z-index: 3;
+  margin: 0px 0px 0px 950px;
+  float: left;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 95%;
+`;
+
+const StSubTitle = styled.div`
+  width: 700px;
+  top: 41%;
+  margin: 180px 10px 0px 0px;
+  height: 30px;
+  position: absolute;
+  background: transparent;
+  bottom: 90px;
+  color: black;
+  float: left;
+  z-index: 3;
 `;

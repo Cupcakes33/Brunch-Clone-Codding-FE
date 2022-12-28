@@ -139,7 +139,9 @@ const StContent = styled.div`
 const StContentInput = styled.input`
   width: 700px;
   outline: none;
-  height: 30px;
+  height: 800px;
+  line-height: 50px;
+  border: 1px solid black;
 `;
 
 const StImgInput = styled.input`
