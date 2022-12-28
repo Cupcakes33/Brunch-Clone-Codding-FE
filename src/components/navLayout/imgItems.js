@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import logo from "../../styles/img/logo.png";
 import icons from "../../styles/img/icons.png";
 import icons2 from "../../styles/img/icons2.png";
+import spriteImg from "../../styles/img/spriteImg.png";
 
 const logoDefault = styled.a`
   cursor: pointer;
@@ -57,6 +58,38 @@ const ItemSearchBtn = styled(btnDefault)`
   background-position: -30px 0;
 `;
 
+const ItemHeartBtn = styled(btnDefault)`
+  width: 21px;
+  height: 20px;
+  background-position: 0 -90px;
+  ${(props) =>
+    props.checked &&
+    css`
+      background-position: -30px -90px;
+    `}
+`;
+
+const ItemCommentBtn = styled(btnDefault)`
+  width: 20px;
+  height: 20px;
+  background-position: 0px -120px;
+`;
+
+const ItemCloseBtn = styled(btnDefault)`
+  width: 23px;
+  height: 23px;
+  background-position: -90px 0px;
+`;
+
+const ItemKakaoLogo = styled.div`
+  width: 20px;
+  height: 20px;
+  background-image: url(${icons2});
+  background-position: -51px -26px;
+`;
+
+
+
 export {
   ItemLogo,
   ItemBell,
@@ -64,6 +97,10 @@ export {
   ItemSearchBtn,
   ItemServiceMenuBtn,
   ItemSideMenulogo,
+  ItemHeartBtn,
+  ItemCommentBtn,
+  ItemCloseBtn,
+  ItemKakaoLogo,
 };
 
 // 이미지 스프라이트 : 웹에서 사용할 (거의 바뀌지 않는) 이미지를 하나로 묶어 관리하는 작업

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ItemBell, ItemLogoIcon, ItemSideMenulogo } from "../imgItems";
 import CommonBox from "../../common/CommonBox";
 import CommonButton from "../../common/CommonButton";
@@ -14,20 +14,11 @@ import {
   StSideMenuList,
   StSideMenuListLogoBox,
 } from "./style";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
   const sideMenu = useRef();
-
-  useLayoutEffect(() => {
-    document.addEventListener("mousedown", outSideClicked);
-    return () => {
-      document.removeEventListener("mousedown", outSideClicked);
-    };
-  }, []);
-
-  const outSideClicked = (event) => {
-    !sideMenu.current.contains(event.target) && setIsSideMenuOpen(false);
-  };
+  useOutsideClick(sideMenu, setIsSideMenuOpen);
 
   return (
     <StSideMenuContainer active={isSideMenuOpen} ref={sideMenu}>

@@ -1,13 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { __addComment, __deleteComment } from "../../redux/slices/detailSlice";
 
-const Comment = () => {
+const CommentForm = ({ commentList }) => {
+  const dispatch = useDispatch();
+
   const [comment, setComment] = useState("");
   const onChangeHandler = (e) => {
     e.preventDefault();
     setComment(e.target.value);
   };
+
+  const onsubmit = (e) => {
+    e.preventDefault();
+    const payload = {
+      postId: commentList?.postId,
+      content: comment,
+    };
+    dispatch(__addComment(payload));
+  };
+
+  // const handleDelete = (commentId) => {
+  //   dispatch(__deletecomment(commentId))
+  // }
 
   return (
     <StCommentList>
@@ -31,12 +48,19 @@ const Comment = () => {
             <AddButton onClick={onsubmit}>확인</AddButton>
           </StCommentBtn>
         </StcommentInput>
+        {commentList?.comment.map((comment, idx) => {
+          return (
+            <StCommentBox key={idx}>
+              <StContent>{comment.content}</StContent>
+            </StCommentBox>
+          );
+        })}
       </Stcommentdiv>
     </StCommentList>
   );
 };
 
-export default Comment;
+export default CommentForm;
 
 const Commentinput = styled.input`
   margin: 20px;
@@ -113,7 +137,18 @@ const StImg = styled.img`
 
 const StCommentlistWraper = styled.div``;
 
-const StCommentBox = styled.div``;
+const StCommentBox = styled.div`
+  border-color: black;
+  float: right;
+  height: 100px;
+  border-bottom: 1px solid black;
+  border-radius: 3px;
+  margin-top: 10px;
+  width: 680px;
+  margin: auto;
+  justify-content: center;
+  padding: 30px 0px 10px 10px;
+`;
 
 const StContent = styled.div``;
 

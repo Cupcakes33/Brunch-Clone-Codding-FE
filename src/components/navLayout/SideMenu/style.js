@@ -7,6 +7,8 @@ const StSideMenuContainer = styled.section`
   min-height: 100vh;
   position: fixed;
   top: 0;
+  left: 0;
+  background: white;
   border-right: 1px solid ${(propos) => propos.theme.color.__line_border};
   transition: ease-in 0.3s;
   transform: translateX(-260px);

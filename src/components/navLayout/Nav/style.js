@@ -9,6 +9,8 @@ const StNav = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background: white;
+
   padding: 0px ${(props) => props.theme.padding.lg};
   transition: background 0.3s;
   font-weight: ${(props) => props.theme.fontWeight.demiLight};
@@ -18,6 +20,7 @@ const StNav = styled.header`
     css`
       height: 60px;
       position: fixed;
+      opacity: 0.8;
       border-bottom: 1px solid ${(props) => props.theme.color.__line_border};
     `}
 `;
@@ -29,4 +32,15 @@ const StNavCenterSpan = styled.span`
   translate: -50% -50%;
 `;
 
-export { StNav, StNavCenterSpan };
+const StDetailPageNavCenterSpan = styled(StNavCenterSpan)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: ${(props) => props.theme.font.base};
+  font-weight: ${(props) => props.theme.fontWeight.demiLight};
+  color: ${(props) => props.theme.color.__text_sub};
+`;
+
+export { StNav, StNavCenterSpan, StDetailPageNavCenterSpan };

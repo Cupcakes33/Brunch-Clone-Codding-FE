@@ -3,7 +3,6 @@ import {
   StNavigatorDiv,
   StNavigatorImg,
   StNavigatorInput,
-  StProfileUserTextarea,
   StProfileUserInfoBox,
   StNavigatorSpan,
   StProfileTipP,
@@ -49,7 +48,7 @@ const Mypage = () => {
               </StProfileH3>
             </StProfileWriterInfoBox>
             <StProfileUserInfoBox>
-              <StProfileUserTextarea placeholder="이름을 입력해주세요"></StProfileUserTextarea>
+              <StProfileTextarea placeholder="이름을 입력해주세요"></StProfileTextarea>
             </StProfileUserInfoBox>
           </StProfileWriterBox>
           <StProfileWriterBox>

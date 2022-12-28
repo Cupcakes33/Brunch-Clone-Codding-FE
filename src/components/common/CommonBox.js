@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const CommonBox = ({
   children,
+  maxWidth,
   width,
+  maxHeight,
   height,
   display,
   position,
@@ -16,16 +18,24 @@ const CommonBox = ({
   gap,
   padding,
   margin,
+  marginTop,
   marginRight,
   marginLeft,
   backgroundColor,
   color,
   border,
   borderRadius,
+  borderBottom,
+  paddingTop,
+  paddingBottom,
+  textAlign,
+  fontWeight,
 }) => {
   const styles = {
     children,
+    maxWidth,
     width,
+    maxHeight,
     height,
     display,
     position,
@@ -39,12 +49,18 @@ const CommonBox = ({
     gap,
     padding,
     margin,
+    marginTop,
     marginRight,
     marginLeft,
     backgroundColor,
     color,
     border,
     borderRadius,
+    borderBottom,
+    paddingTop,
+    paddingBottom,
+    textAlign,
+    fontWeight,
   };
   return <StBox {...styles}>{children}</StBox>;
 };
@@ -54,8 +70,10 @@ CommonBox.defaultProps = {
 };
 
 const StBox = styled.div`
+  max-width: ${({ maxWidth }) => maxWidth};
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  max-height: ${({ maxHeight }) => maxHeight};
   position: ${({ position }) => position};
   display: ${({ display }) => display};
   top: ${({ top }) => top};
@@ -67,6 +85,7 @@ const StBox = styled.div`
   justify-content: ${({ justifyContent }) => justifyContent};
   gap: ${({ gap }) => gap};
   margin: ${({ margin }) => margin};
+  margin-top: ${({ marginTop }) => marginTop};
   margin-right: ${({ marginRight }) => marginRight};
   margin-left: ${({ marginLeft }) => marginLeft};
   padding: ${({ padding }) => padding};
@@ -74,6 +93,11 @@ const StBox = styled.div`
   color: ${({ color }) => color};
   border: ${({ border }) => border};
   border-radius: ${({ borderRadius }) => borderRadius};
+  border-bottom: ${({ borderBottom }) => borderBottom};
+  padding-top: ${({ paddingTop }) => paddingTop};
+  padding-bottom: ${({ paddingBottom }) => paddingBottom};
+  text-align: ${({ textAlign }) => textAlign};
+  font-weight: ${({ fontWeight }) => fontWeight};
 `;
 
 export default CommonBox;
