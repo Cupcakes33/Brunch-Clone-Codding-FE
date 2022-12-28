@@ -6,7 +6,7 @@ import TimeAgoKo from "../common/TimeAgoKo";
 // import * as timeAgo from "timeago.js";
 // import ko from "timeago.js/lib/lang/ko";
 
-const ContentList = ({ title, content, img, createAt }) => {
+const ContentList = ({ title, content, img, createAt, writer }) => {
   // const a = createAt.split(".");
   // const b = new Date(a[0]);
   // timeAgo.register("ko", ko);
@@ -29,7 +29,7 @@ const ContentList = ({ title, content, img, createAt }) => {
           <span>{content}</span>
         </StContentLink>
         <StContentWriterBox>
-          <a>김설원</a>
+          <a>{writer}</a>
           <span>
             {/* <TimeAgo datetime={b} locale="ko" /> */}
             <TimeAgoKo createAt={createAt} />
