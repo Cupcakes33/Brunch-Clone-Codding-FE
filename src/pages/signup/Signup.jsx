@@ -1,31 +1,106 @@
 import CommonBox from "../../components/common/CommonBox";
 import styled from "styled-components";
-import { StSpan } from "./style";
+import { StSpan, StForm, StInput, StSubmitButton, StP } from "./style";
+import { useEffect, useState } from "react";
+import { addUserInfo } from "../../redux/slices/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 const Signup = () => {
-  const onClickLoginChose = (e) => {
-    e.preventDefault();
-    console.log("ggg");
+  const [signForm, setSignForm] = useState({
+    writer: "",
+    email: "",
+    password: "",
+  });
+  const inputHandler = (event) => {
+    const { name, value } = event.target;
+    setSignForm((prev) => {
+      return { ...prev, [name]: value };
+    });
+    // if (emailCheck(signForm.email)) {
+    //   console.log("g");
+    //   setIsCheck({ ...isCheck, isEmail: true });
+    // } else {
+    //   setIsCheck({ ...isCheck, isEmail: false });
+    // }
+    // if (textCheck(signForm.writer)) {
+    //   setIsCheck({ ...isCheck, iswriter: true });
+    //   console.log("1");
+    // } else {
+    //   setIsCheck({ ...isCheck, iswriter: false });
+    //   console.log("2");
+    // }
+    // if (textCheck(signForm.password)) {
+    //   setIsCheck({ ...isCheck, isPassword: true });
+    //   console.log("3");
+    // } else {
+    //   setIsCheck({ ...isCheck, isPassword: false });
+    //   console.log("4");
+    // }
+
+    // console.log(isCheck);
+  };
+
+  const signupMsg = useSelector((state) => state.login.alertMsg);
+  const [isCheck, setIsCheck] = useState({
+    iswriter: false,
+    isEmail: false,
+    isPassword: false,
+  });
+  // const writerRegExp = /^[a-zA-z0-9]{3,12}$/;
+  const dispatch = useDispatch();
+  const submitOnclickHandler = () => {
+    dispatch(addUserInfo(signForm));
+    setSignForm({
+      writer: "",
+      email: "",
+      password: "",
+    });
   };
   return (
     <div>
       <StSpan />
-      <form>
-        <label htmlFor="email">이메일</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="test@email.com"
-        />
-        <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="****************"
-        />
-        <button type="submit">로그인</button>
-      </form>
+      <CommonBox
+        width={"580px"}
+        padding={"0 69px"}
+        border={"1px solid rgba(0,0,0,.12)"}
+        margin={"42px auto 40px"}
+      >
+        <StForm onSubmit={(e) => e.preventDefault()}>
+          <CommonBox marginTop={"10px"} flexDirection={"column"}>
+            <StInput
+              name="writer"
+              placeholder="닉네임"
+              value={signForm.writer}
+              onChange={(event) => inputHandler(event)}
+            />
+
+            {/* {isCheck.iswriter || <StP>입력한 값을 확인하세요</StP>} */}
+          </CommonBox>
+          <CommonBox marginTop={"10px"} flexDirection={"column"}>
+            <StInput
+              name="email"
+              placeholder="이메일"
+              value={signForm.email}
+              onChange={(event) => inputHandler(event)}
+            />
+            {/* {isCheck.isEmail || <StP>입력한 값을 확인하세요</StP>} */}
+          </CommonBox>
+          <CommonBox marginTop={"10px"} flexDirection={"column"}>
+            <StInput
+              name="password"
+              type="password"
+              placeholder="비밀번호"
+              value={signForm.password}
+              onChange={(event) => inputHandler(event)}
+            />
+
+            {/* {isCheck.isPassword || <StP>입력한 값을 확인하세요</StP>} */}
+          </CommonBox>
+          <StSubmitButton onClick={() => submitOnclickHandler()}>
+            가입하기
+          </StSubmitButton>
+        </StForm>
+      </CommonBox>
     </div>
   );
 };
