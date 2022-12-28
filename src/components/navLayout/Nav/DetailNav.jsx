@@ -14,7 +14,7 @@ import CommonButton from "../../common/CommonButton";
 
 import styled from "styled-components";
 
-const DetailNav = () => {
+const DetailNav = ({ itemList }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const scrollPosition = useScrollDetection(200);
 
@@ -39,12 +39,12 @@ const DetailNav = () => {
         </StDetailPageNavCenterSpan>
         <Stdiv>
           <CommonBox alignItems="center" gap="5px">
-            <ItemHeartBtn checked/>
-            <span>30</span>
+            <ItemHeartBtn checked />
+            <span>{itemList?.LikesCount}</span>
           </CommonBox>
           <CommonBox alignItems="center" gap="5px">
             <ItemCommentBtn />
-            <span>2</span>
+            <span>{itemList?.CommentsCount}</span>
           </CommonBox>
         </Stdiv>
       </StNav>
