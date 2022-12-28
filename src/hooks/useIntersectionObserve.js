@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import axios from "axios";
 import throttle from "../libs/throttle";
 
@@ -7,15 +7,11 @@ const useIntersectionObserve = (url) => {
   const [itemLists, setItemLists] = useState([]);
 
   const nextItemId = itemLists[itemLists.length - 1]?.postId;
-  console.log(itemLists);
-  console.log(nextItemId);
+
   const nextUrl = `${url}?p=${nextItemId}`;
 
   const getMoreItem = async () => {
     const data = await axios.get(nextUrl);
-    console.log(nextItemId);
-    console.log(data.data.lastPost);
-
     if (nextItemId !== data.data.lastPost) {
       setItemLists((itemLists) => itemLists.concat(data.data.result));
     } else {
@@ -34,7 +30,7 @@ const useIntersectionObserve = (url) => {
   useLayoutEffect(() => {
     let observer;
     if (target) {
-      observer = new IntersectionObserver(throttle(onIntersect, 10), {
+      observer = new IntersectionObserver(throttle(onIntersect, 100), {
         root: null,
         rootMargin: "1px",
         threshold: 0.4,

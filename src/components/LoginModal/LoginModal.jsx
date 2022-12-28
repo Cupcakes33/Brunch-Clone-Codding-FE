@@ -3,10 +3,18 @@ import Modal from "../Modal/Modal";
 import Carousel from "../common/Carousel";
 import { ItemKakaoLogo, ItemLogoIcon, ItemLogo } from "../navLayout/imgItems";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { emailLogin } from "../../redux/slices/mainSlice";
 
 const LoginModal = ({ onClose }) => {
+  const dispatch = useDispatch();
+
   const LoginSubmitHandler = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
+    dispatch(emailLogin({ email, password }));
   };
 
   const kakaoLoginBtnHandler = () => {
@@ -33,11 +41,11 @@ const LoginModal = ({ onClose }) => {
           <h2>브런치 시작하기</h2>
           <div>
             <p>이메일</p>
-            <input type="email" />
+            <input type="email" name="email" />
           </div>
           <div>
             <p>비밀번호</p>
-            <input type="password" />
+            <input type="password" name="password" />
           </div>
           <button>
             <ItemLogo />

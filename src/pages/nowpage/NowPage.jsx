@@ -56,6 +56,7 @@ const NowPage = () => {
                 content={e.content}
                 img={e.coverImage}
                 createAt={e.createdAt}
+                writer={e.writer}
                 key={`nowitem${n}`}
               />
             );
