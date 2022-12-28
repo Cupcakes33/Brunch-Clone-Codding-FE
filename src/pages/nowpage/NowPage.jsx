@@ -49,7 +49,16 @@ const NowPage = () => {
             modal
           </button>
           {itemLists.map((e, n) => {
-            return <ContentList name={e.name} url={e.url} key={n} num={n} />;
+            return (
+              <ContentList
+                title={e.title}
+                subtitle={e.subtitle}
+                content={e.content}
+                img={e.coverImage}
+                createAt={e.createdAt}
+                key={`nowitem${n}`}
+              />
+            );
           })}
           <StLastItem ref={setTarget} />
         </StNowPageContentsWrapper>

@@ -1,18 +1,34 @@
 import styled, { css } from "styled-components";
-import CommonBox from "../common/CommonBox";
 import Modal from "../Modal/Modal";
+import Carousel from "../common/Carousel";
 import { ItemKakaoLogo, ItemLogoIcon, ItemLogo } from "../navLayout/imgItems";
+import axios from "axios";
 
 const LoginModal = ({ onClose }) => {
   const LoginSubmitHandler = (event) => {
     event.preventDefault();
   };
+
+  const kakaoLoginBtnHandler = () => {
+    axios.get("https://brunchclone.shop/auth/kakao");
+  };
   return (
     <Modal onClose={onClose}>
-      <LoginModalSection leftSection>
+      <StLoginModalSection leftSection>
         <ItemLogoIcon />
-      </LoginModalSection>
-      <LoginModalSection>
+        {/* 이 부분 수정할 것 */}
+        <div
+          style={{
+            width: "500px",
+            height: "300px",
+            position: "absolute",
+            left: "0px",
+          }}
+        >
+          <Carousel />
+        </div>
+      </StLoginModalSection>
+      <StLoginModalSection>
         <StLoginForm onSubmit={LoginSubmitHandler}>
           <h2>브런치 시작하기</h2>
           <div>
@@ -29,12 +45,12 @@ const LoginModal = ({ onClose }) => {
           </button>
         </StLoginForm>
         <StKakaoLoginWrapper>
-          <button>
+          <button onClick={kakaoLoginBtnHandler}>
             <ItemKakaoLogo />
             <span>카카오계정으로 시작하기</span>
           </button>
         </StKakaoLoginWrapper>
-      </LoginModalSection>
+      </StLoginModalSection>
     </Modal>
   );
 };
@@ -51,7 +67,7 @@ const LoginModalBoxLayout = css`
   gap: 10px;
 `;
 
-const LoginModalSection = styled.div`
+const StLoginModalSection = styled.div`
   width: 50%;
   height: 100%;
   flex-direction: column;
