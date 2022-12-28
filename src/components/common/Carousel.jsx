@@ -23,7 +23,7 @@ const Carousel = () => {
     return () => {
       clearInterval(intervalCarousel);
     };
-  }, []);
+  });
 
   const prevImgMoveBtnHandler = () => {
     if (currentIndex === 0) {

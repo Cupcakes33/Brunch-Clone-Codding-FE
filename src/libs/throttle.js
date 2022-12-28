@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * @param {Function} func : 쓰로틀링 할 함수
  * @param {Number} timeout : 쓰로틀링 딜레이
- * @returns 
+ * @returns
  */
 
 const throttle = (func, timeout) => {

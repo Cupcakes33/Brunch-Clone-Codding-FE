@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CommonBox from "../common/CommonBox";
 
-const ContentList = ({ name, url }) => {
+const ContentList = ({ title, content, img, createAt }) => {
   return (
     <StContentList>
       <CommonBox
@@ -10,21 +10,22 @@ const ContentList = ({ name, url }) => {
         height="120px"
         justifyContent="space-between"
       >
+        {/* title={e.title}
+                subtitle={e.subtitle}
+                content={e.content}
+                img={e.coverImage}
+                createAt={e.createdAt} */}
         <StContentLink>
-          <strong>{name}</strong>
-          <span>
-            지금 아버지와 나는 출발 선상에 있다. 공교롭게도 우리는 한날한시에
-            각자의 목적지를 향해 달리게 됐다. 누군가가 고약한 심술을
-            부려'결혼'과 '유기'라는
-          </span>
+          <strong>{title}</strong>
+          <span>{content}</span>
         </StContentLink>
         <StContentWriterBox>
           <a>김설원</a>
-          <span>3분전</span>
+          <span>{createAt}</span>
         </StContentWriterBox>
       </CommonBox>
       <StThumbnailImgBox>
-        <img></img>
+        <img src={img} />
       </StThumbnailImgBox>
     </StContentList>
   );
@@ -54,6 +55,12 @@ const StContentLink = styled.a`
     margin-bottom: 3px;
   }
   span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    height: 100%;
+
     color: ${(props) => props.theme.color.__text_sub};
     font-size: ${(props) => props.theme.font.base};
     font-weight: ${(props) => props.theme.fontWeight.demiLight};

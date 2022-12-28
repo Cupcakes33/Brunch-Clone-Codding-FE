@@ -1,24 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import axios from "axios";
 import throttle from "../libs/throttle";
 
 const useIntersectionObserve = (url) => {
   const [target, setTarget] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
   const [itemLists, setItemLists] = useState([]);
 
-  const next = itemLists[itemLists.length - 1]?.postId;
+  const nextItemId = itemLists[itemLists.length - 1]?.postId;
   console.log(itemLists);
-  console.log(next);
+  console.log(nextItemId);
+  const nextUrl = `${url}?p=${nextItemId}`;
 
-  const nextUrl = `${url}?p=${next}`;
   const getMoreItem = async () => {
     const data = await axios.get(nextUrl);
-    setItemLists((itemLists) => itemLists.concat(data.data.result));
+    console.log(nextItemId);
+    console.log(data.data.lastPost);
+
+    if (nextItemId !== data.data.lastPost) {
+      setItemLists((itemLists) => itemLists.concat(data.data.result));
+    } else {
+      return;
+    }
   };
 
   const onIntersect = async ([entry], observer) => {
-    // if (entry.isIntersecting && !isLoaded) {
     if (entry.isIntersecting) {
       observer.unobserve(entry.target);
       await getMoreItem();
@@ -26,10 +31,12 @@ const useIntersectionObserve = (url) => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let observer;
     if (target) {
-      observer = new IntersectionObserver(onIntersect, {
+      observer = new IntersectionObserver(throttle(onIntersect, 10), {
+        root: null,
+        rootMargin: "1px",
         threshold: 0.4,
       });
       observer.observe(target);
