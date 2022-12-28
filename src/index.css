@@ -1,5 +1,24 @@
+@font-face {
+  font-family: "Noto Sans Kr";
+  font-weight: 100;
+  src: url(./styles/font/NotoSansKR-Thin.otf);
+}
+
+@font-face {
+  font-family: "Noto Sans Kr";
+  font-weight: 300;
+
+  src: url(./styles/font/NotoSansKR-Light.otf);
+}
+@font-face {
+  font-family: "Noto Sans Kr";
+  font-weight: 400;
+  src: url(./styles/font/NotoSansKR-Regular.otf);
+}
 * {
   border: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 100;
 }
