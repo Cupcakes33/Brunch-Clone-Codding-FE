@@ -1,11 +1,16 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { postItem } from "../../redux/slices/postSlice";
+import useInputItem from "../../hooks/useInputItem";
 import style from "./style";
 
 const Post = () => {
-  const [title, setTitle] = useState("");
-  const [fileimage, setFileimage] = useState("");
+  const { input, onChangeHandler, reset } = useInputItem();
+
+  const dispatch = useDispatch();
+  const [coverimage, setCoverimage] = useState("");
 
   // const removeImage = (id) => {
   //   let newList = imageList.filter((image) => image.id !== id);
@@ -13,9 +18,16 @@ const Post = () => {
   //   return;
   // };
 
-  const onChangeTitle = (e) => {
+  const onsubmitHandler = (e) => {
     e.preventDefault();
-    setTitle(e.target.value);
+
+    const formData = new FormData();
+    const { title, subtitle, content } = input;
+    formData.append("title", title);
+    formData.append("subtitle", subtitle);
+    formData.append("content", content);
+    formData.append("coverimage", coverimage);
+    dispatch(postItem(formData));
   };
 
   const [subtitle, setSubtitle] = useState("");
@@ -30,60 +42,61 @@ const Post = () => {
     setContent(e.target.value);
   };
 
-  const saveFileimage = (e) => {
-    setFileimage(URL.createObjectURL(e.target.files[0]));
-  };
-
   const deleteFileImage = () => {
-    URL.revokeObjectURL(fileimage);
-    setFileimage("");
+    URL.revokeObjectURL(coverimage);
+    setCoverimage("");
   };
 
   return (
     <>
-      <StTitle>
-        {fileimage && <Stimage src={fileimage}></Stimage>}
-        <StInputDiv>
-          <StTitleInput
-            type="text"
-            name="content"
-            value={title}
-            placeholder="제목을 입력하세요"
-            onChange={onChangeTitle}
-          ></StTitleInput>
-          <StSubTitleInput
-            type="text"
-            name="content"
-            value={subtitle}
-            placeholder="소제목을 입력하세요"
-            onChange={onChangeSubtitle}
-          />
-
-          <StPostLogo>
-            <div>
-              <StDelImg>
-                <button onClick={() => deleteFileImage()}>삭제</button>
-              </StDelImg>
-            </div>
-            <StImgInput
-              name="imgUpload"
-              type="file"
-              accept="image/*"
-              onChange={saveFileimage}
+      <StContainer onSubmit={onChangeHandler}>
+        <StTitle>
+          {coverimage && <Stimage src={coverimage}></Stimage>}
+          <StInputDiv>
+            <StTitleInput
+              type="text"
+              name="title"
+              value={input.title}
+              placeholder="제목을 입력하세요"
+              onChange={onChangeHandler}
+            ></StTitleInput>
+            <StSubTitleInput
+              type="text"
+              name="subtitle"
+              value={subtitle}
+              placeholder="소제목을 입력하세요"
+              onChange={onChangeHandler}
             />
-          </StPostLogo>
-        </StInputDiv>
-      </StTitle>
-      <StPost>
-        <StContent>
-          <StContentInput
-            type="text"
-            name="content"
-            value={content}
-            onChange={onChangeContent}
-          />
-        </StContent>
-      </StPost>
+
+            <StPostLogo>
+              <div>
+                <StDelImg>
+                  <button onClick={() => deleteFileImage()}>삭제</button>
+                </StDelImg>
+              </div>
+              <StImgInput
+                name="coverimage"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  setCoverimage(e.target.files[0]);
+                }}
+              />
+            </StPostLogo>
+          </StInputDiv>
+        </StTitle>
+        <StPost>
+          <button onClick={() => onsubmitHandler()}></button>
+          <StContent>
+            <StContentInput
+              type="text"
+              name="content"
+              value={content}
+              onChange={onChangeContent}
+            />
+          </StContent>
+        </StPost>
+      </StContainer>
     </>
   );
 };
@@ -131,7 +144,7 @@ const StSubTitleInput = styled.input`
 
 const StContent = styled.div`
   width: 700px;
-  height: 300px;
+  height: 100%;
 
   margin: 0 auto;
 `;
@@ -142,6 +155,7 @@ const StContentInput = styled.input`
   height: 800px;
   line-height: 50px;
   border: 1px solid black;
+  word-break: break-all;
 `;
 
 const StImgInput = styled.input`
@@ -160,7 +174,7 @@ const StPostLogo = styled.div`
 
 const Stimage = styled.img`
   width: 100%;
-  height: 450px;
+  height: 480px;
 
   object-fit: fill;
   image-rendering: -moz-crisp-edges;
@@ -183,3 +197,5 @@ const StInputDiv = styled.div`
   left: 50vw;
   top: 25%;
 `;
+
+const StContainer = styled.div``;

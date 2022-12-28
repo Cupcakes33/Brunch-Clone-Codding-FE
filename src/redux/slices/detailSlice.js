@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { instance } from "../../api/axios";
 
 const initialState = {
   result: [],
@@ -13,9 +14,7 @@ export const __getResult = createAsyncThunk(
   async (payload, thunkApI) => {
     console.log("payload", payload);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_SERVER}api/post/${payload}`
-      );
+      const response = await instance.get(`api/post/${payload}`);
       console.log("response", response);
       return thunkApI.fulfillWithValue(response.data);
     } catch (error) {
@@ -28,15 +27,12 @@ export const __addComment = createAsyncThunk(
   "commentlist/addcomment",
   async (payload, thunkApI) => {
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_SERVER}api/comment/${payload.postId}`,
-        { content: payload.content }
-      );
+      const res = await instance.post(`api/comment/${payload.postId}`, {
+        content: payload.content,
+      });
       if (res.status === 201) {
-        const result = await axios.get(
-          `${process.env.REACT_APP_SERVER}api/post/${payload.postid}`
-        );
-        return thunkApI.fulfillWithValue(result?.data);
+        const respons = await instance.get(`api/post/${payload.postid}`);
+        return thunkApI.fulfillWithValue(respons?.data);
       }
     } catch (err) {
       return thunkApI.rejectWithValue(err);
