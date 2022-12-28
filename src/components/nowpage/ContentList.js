@@ -1,7 +1,16 @@
 import styled from "styled-components";
 import CommonBox from "../common/CommonBox";
+import TimeAgoKo from "../common/TimeAgoKo";
+
+// import TimeAgo from "timeago-react";
+// import * as timeAgo from "timeago.js";
+// import ko from "timeago.js/lib/lang/ko";
 
 const ContentList = ({ title, content, img, createAt }) => {
+  // const a = createAt.split(".");
+  // const b = new Date(a[0]);
+  // timeAgo.register("ko", ko);
+
   return (
     <StContentList>
       <CommonBox
@@ -21,7 +30,10 @@ const ContentList = ({ title, content, img, createAt }) => {
         </StContentLink>
         <StContentWriterBox>
           <a>김설원</a>
-          <span>{createAt}</span>
+          <span>
+            {/* <TimeAgo datetime={b} locale="ko" /> */}
+            <TimeAgoKo createAt={createAt} />
+          </span>
         </StContentWriterBox>
       </CommonBox>
       <StThumbnailImgBox>
