@@ -34,6 +34,7 @@ const fontWeight = {
 const color = {
   __text_main: "#333333",
   __text_sub: "#666666",
+  __text_sub2: "#999",
   __text_caption_1: "#959595",
   __line_contents: "#00C3BD",
   __line_border: "#ddd",
