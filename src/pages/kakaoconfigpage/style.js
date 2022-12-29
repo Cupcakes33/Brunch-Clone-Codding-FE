@@ -41,6 +41,7 @@ const StSpan = styled.span`
   color: ${(props) => props.theme.color.__text_sub};
   font-size: ${(props) => props.theme.font.small};
   margin-left: 10px;
+  margin: auto 10px;
 `;
 const StCheckboxSpan = styled.span`
   color: ${(props) => props.theme.color.__line_contents};

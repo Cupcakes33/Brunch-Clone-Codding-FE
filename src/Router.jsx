@@ -7,6 +7,7 @@ import Post from "./pages/detailpage/Post";
 import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
 import Secession from "./pages/secession/Secession";
+import KakaoRedirect from "./pages/kakaologin/KakaoRedirect";
 
 const Router = () => {
   return (
@@ -16,13 +17,9 @@ const Router = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signup" element={<Signup />} />
 
-        <Route path="/secession" element={<Secession />} />
-
         <Route path="/now" element={<NowPage />} />
 
-
-
-        <Route path="/" element={<Secession />} />
+        <Route path="/api/auth/kakao/callback" element={<KakaoRedirect />} />
         <Route path="/post/:postid" element={<Detail />} />
         <Route path="/secession" element={<Secession />} />
 
