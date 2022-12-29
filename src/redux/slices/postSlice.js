@@ -2,6 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const instance = axios.create({
   baseURL: "https://brunchclone.shop/",
+  headers: {
+    processData: false,
+    contentType: "multipart/form-data",
+  },
 });
 
 const getToken = () => {
@@ -45,6 +49,7 @@ export const postItem = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       let result;
+      console.log(data);
       const res = await instance.post("api/post", data);
 
       if (res.status === 201) {
