@@ -1,12 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { postItem } from "../../redux/slices/postSlice";
 import useInputItem from "../../hooks/useInputItem";
-import style from "./style";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 
 const Post = () => {
+  const imgRef = useRef(null);
   const { input, onChangeHandler, reset } = useInputItem();
 
   const dispatch = useDispatch();
@@ -19,6 +20,20 @@ const Post = () => {
     URL.revokeObjectURL(fileimage);
     setFileImage("");
   };
+
+  const dataURItoBlob = (dataURI) => {
+    const splitDataURI = dataURI.split(",");
+    const byteString =
+      splitDataURI[0].indexOf("base64") >= 0
+        ? atob(splitDataURI[1])
+        : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++)
+      ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
+  };
+
   // const removeImage = (id) => {
   //   let newList = imageList.filter((image) => image.id !== id);
   //   getImageList(newList);
@@ -41,6 +56,7 @@ const Post = () => {
 
   return (
     <>
+      <PostNav />
       <StContainer>
         <StTitle>
           {fileimage && <Stimage src={fileimage}></Stimage>}
@@ -153,10 +169,11 @@ const StImgInput = styled.input`
   top: 30%;
 `;
 
-const StDelImg = styled.button`
+const StDelImg = styled.div`
   position: absolute;
   top: 50%;
 `;
+////////
 
 const StPostLogo = styled.div`
   margin-left: 1200px;
