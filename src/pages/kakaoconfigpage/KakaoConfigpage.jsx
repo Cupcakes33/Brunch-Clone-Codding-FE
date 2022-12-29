@@ -23,7 +23,7 @@ const KakaoConfigpage = () => {
   // const REDIRECT_URI = `https://brunchclone.shop/api/auth/kakao/callback`;
   const REDIRECT_URI = `http://localhost:3000/api/auth/kakao/callback`;
   const kakaoLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = `https://brunchclone.shop/api/auth/kakao`;
   };
   const [checkEvent, setCheckEvent] = useState(false);
   const checkboxEvent = (e) => {
