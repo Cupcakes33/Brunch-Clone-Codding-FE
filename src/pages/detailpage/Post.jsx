@@ -1,11 +1,38 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import style from "./style";
+import { postItem } from "../../redux/slices/postSlice";
+import useInputItem from "../../hooks/useInputItem";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 
 const Post = () => {
-  const [title, setTitle] = useState("");
-  const [fileimage, setFileimage] = useState("");
+  const imgRef = useRef(null);
+  const { input, onChangeHandler, reset } = useInputItem();
+
+  const dispatch = useDispatch();
+  const [fileimage, setFileImage] = useState("");
+
+  const saveFileImage = (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileimage);
+    setFileImage("");
+  };
+
+  const dataURItoBlob = (dataURI) => {
+    const splitDataURI = dataURI.split(",");
+    const byteString =
+      splitDataURI[0].indexOf("base64") >= 0
+        ? atob(splitDataURI[1])
+        : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++)
+      ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
+  };
 
   // const removeImage = (id) => {
   //   let newList = imageList.filter((image) => image.id !== id);
@@ -13,77 +40,69 @@ const Post = () => {
   //   return;
   // };
 
-  const onChangeTitle = (e) => {
-    e.preventDefault();
-    setTitle(e.target.value);
-  };
+  const onsubmitHandler = (e) => {
+    const formData = new FormData();
+    const { title, subtitle, content } = input;
+    formData.append("title", title);
+    formData.append("subtitle", subtitle);
+    formData.append("content", content);
+    formData.append("coverimage", fileimage);
+    dispatch(postItem(formData));
 
-  const [subtitle, setSubtitle] = useState("");
-  const onChangeSubtitle = (e) => {
-    e.preventDefault();
-    setSubtitle(e.target.value);
-  };
+    console.log(title, subtitle, content, formData);
 
-  const [content, setContent] = useState("");
-  const onChangeContent = (e) => {
-    e.preventDefault();
-    setContent(e.target.value);
-  };
-
-  const saveFileimage = (e) => {
-    setFileimage(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileimage);
-    setFileimage("");
+    reset();
   };
 
   return (
     <>
-      <StTitle>
-        {fileimage && <Stimage src={fileimage}></Stimage>}
-        <StInputDiv>
-          <StTitleInput
-            type="text"
-            name="content"
-            value={title}
-            placeholder="제목을 입력하세요"
-            onChange={onChangeTitle}
-          ></StTitleInput>
-          <StSubTitleInput
-            type="text"
-            name="content"
-            value={subtitle}
-            placeholder="소제목을 입력하세요"
-            onChange={onChangeSubtitle}
-          />
-
-          <StPostLogo>
-            <div>
-              <StDelImg>
-                <button onClick={() => deleteFileImage()}>삭제</button>
-              </StDelImg>
-            </div>
-            <StImgInput
-              name="imgUpload"
-              type="file"
-              accept="image/*"
-              onChange={saveFileimage}
+      <PostNav />
+      <StContainer>
+        <StTitle>
+          {fileimage && <Stimage src={fileimage}></Stimage>}
+          <StInputDiv>
+            <StTitleInput
+              type="text"
+              name="title"
+              value={input.title}
+              placeholder="제목을 입력하세요"
+              onChange={onChangeHandler}
+            ></StTitleInput>
+            <StSubTitleInput
+              type="text"
+              name="subtitle"
+              value={input.subtitle}
+              placeholder="소제목을 입력하세요"
+              onChange={onChangeHandler}
             />
-          </StPostLogo>
-        </StInputDiv>
-      </StTitle>
-      <StPost>
-        <StContent>
-          <StContentInput
-            type="text"
-            name="content"
-            value={content}
-            onChange={onChangeContent}
-          />
-        </StContent>
-      </StPost>
+
+            <StPostLogo>
+              <div>
+                <StDelImg>
+                  <button onClick={() => deleteFileImage()}>삭제</button>
+                </StDelImg>
+              </div>
+              <StImgInput
+                name="coverimage"
+                type="file"
+                accept="image/*"
+                onChange={saveFileImage}
+              />
+            </StPostLogo>
+          </StInputDiv>
+        </StTitle>
+        <StPost>
+          <button onClick={() => onsubmitHandler()}>작성하기</button>
+          <StContent>
+            <StContentInput
+              type="text"
+              name="content"
+              value={input.content}
+              onChange={onChangeHandler}
+            />
+          </StContent>
+        </StPost>
+      </StContainer>
     </>
   );
 };
@@ -131,7 +150,7 @@ const StSubTitleInput = styled.input`
 
 const StContent = styled.div`
   width: 700px;
-  height: 300px;
+  height: 100%;
 
   margin: 0 auto;
 `;
@@ -142,6 +161,7 @@ const StContentInput = styled.input`
   height: 800px;
   line-height: 50px;
   border: 1px solid black;
+  word-break: break-all;
 `;
 
 const StImgInput = styled.input`
@@ -149,10 +169,11 @@ const StImgInput = styled.input`
   top: 30%;
 `;
 
-const StDelImg = styled.button`
+const StDelImg = styled.div`
   position: absolute;
   top: 50%;
 `;
+////////
 
 const StPostLogo = styled.div`
   margin-left: 1200px;
@@ -160,7 +181,7 @@ const StPostLogo = styled.div`
 
 const Stimage = styled.img`
   width: 100%;
-  height: 450px;
+  height: 480px;
 
   object-fit: fill;
   image-rendering: -moz-crisp-edges;
@@ -183,3 +204,5 @@ const StInputDiv = styled.div`
   left: 50vw;
   top: 25%;
 `;
+
+const StContainer = styled.div``;
