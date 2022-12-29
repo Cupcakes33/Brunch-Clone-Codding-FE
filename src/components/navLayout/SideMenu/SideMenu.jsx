@@ -18,6 +18,7 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 import LoginModal from "../../LoginModal/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "../../../redux/slices/mainSlice";
+import { useNavigate } from "react-router-dom";
 
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
   const { writer, profileImage } = useSelector(
     (state) => state.main.sideMenuUserInfo
   );
+  const navigate = useNavigate();
 
   return (
     <>
@@ -75,7 +77,14 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
                 </CommonButton>
               ) : (
                 <>
-                  <CommonButton colorType={"contents"}>글쓰기</CommonButton>
+                  <CommonButton
+                    colorType={"contents"}
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  >
+                    글쓰기
+                  </CommonButton>
                   <CommonButton colorType={"contents"}>작가 신청</CommonButton>
                 </>
               )}
@@ -98,11 +107,19 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
               </>
             ) : null}
 
-            <StSideMenuList>
+            <StSideMenuList
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <span />
               브런치 홈<span />
             </StSideMenuList>
-            <StSideMenuList>
+            <StSideMenuList
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <span />
               브런치 나우
               <span />
@@ -115,7 +132,13 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
           <CommonBox gap="5px">
             {writer ? (
               <>
-                <CommonButton>설정</CommonButton>
+                <CommonButton
+                  onClick={() => {
+                    navigate("/config");
+                  }}
+                >
+                  설정
+                </CommonButton>
                 <CommonButton
                   onClick={() => {
                     localStorage.removeItem("token");

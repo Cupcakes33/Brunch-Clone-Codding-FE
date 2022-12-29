@@ -8,6 +8,7 @@ const StNavigatorDiv = styled.div`
 `;
 const StNavigatorSpan = styled.span`
   background-image: url(${spriteImg});
+  z-index: 100;
   position: absolute;
   bottom: 0;
   width: 46px;
@@ -21,6 +22,7 @@ const StNavigatorImg = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 100px;
+  z-index: 99;
 `;
 const StNavigatorInput = styled.input`
   display: none;

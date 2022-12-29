@@ -19,6 +19,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 const KakaoConfigpage = () => {
   // const REDIRECT_URI = `https://brunchclone.shop/api/auth/kakao/callback`;
   const REDIRECT_URI = `http://localhost:3000/api/auth/kakao/callback`;
@@ -47,6 +48,7 @@ const KakaoConfigpage = () => {
 
   return (
     <>
+    <PostNav/>
       <CommonBox
         margin={"103px auto 0"}
         width={"700px"}
@@ -116,10 +118,10 @@ const KakaoConfigpage = () => {
             )}
           </StEventDiv>
         </CommonBox>
-        <CommonBox>
+        {/* <CommonBox>
           <StA>탈퇴하기</StA>
-        </CommonBox>
-        <button onClick={kakaoLogin}>카카오로그인</button>
+        </CommonBox> */}
+        {/* <button onClick={kakaoLogin}>카카오로그인</button> */}
       </CommonBox>
     </>
   );

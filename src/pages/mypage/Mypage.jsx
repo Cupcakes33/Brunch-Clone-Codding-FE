@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo, updateUserInfoData } from "../../redux/slices/loginSlice";
 import CommonBox from "../../components/common/CommonBox";
 import { useNavigate } from "react-router-dom";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 const Mypage = () => {
   const imageInput = useRef();
   const onclickImageUpload = () => {
@@ -70,6 +71,7 @@ const Mypage = () => {
   }, [userId, writer, profileImage, selfIntro]);
   return (
     <div>
+      <PostNav />
       <StNavigatorDiv>
         <CommonBox
           width={"100px"}

@@ -13,16 +13,17 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<NowPage />} />
+
+        <Route path="/post/:postid" element={<Detail />} />
+        <Route path="/post" element={<Post />} />
+        
         <Route path="/config" element={<KakaoConfigpage />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/secession" element={<Secession />} />
-        <Route path="/now" element={<NowPage />} />
-        <Route path="/" element={<Secession />} />
-        <Route path="/now" element={<NowPage />} />
         <Route path="/api/auth/kakao/callback" element={<KakaoRedirect />} />
-        <Route path="/post/:postid" element={<Detail />} />
-        <Route path="/post" element={<Post />} />
+        
       </Routes>
     </BrowserRouter>
   );
