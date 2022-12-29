@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CommonBox from "../common/CommonBox";
 import TimeAgoKo from "../common/TimeAgoKo";
@@ -6,11 +7,11 @@ import TimeAgoKo from "../common/TimeAgoKo";
 // import * as timeAgo from "timeago.js";
 // import ko from "timeago.js/lib/lang/ko";
 
-const ContentList = ({ title, content, img, createAt, writer }) => {
+const ContentList = ({ title, content, img, createAt, writer, postId }) => {
   // const a = createAt.split(".");
   // const b = new Date(a[0]);
   // timeAgo.register("ko", ko);
-
+  const navigate = useNavigate();
   return (
     <StContentList>
       <CommonBox
@@ -24,7 +25,11 @@ const ContentList = ({ title, content, img, createAt, writer }) => {
                 content={e.content}
                 img={e.coverImage}
                 createAt={e.createdAt} */}
-        <StContentLink>
+        <StContentLink
+          onClick={() => {
+            navigate(`/post/${postId}`);
+          }}
+        >
           <strong>{title}</strong>
           <span>{content}</span>
         </StContentLink>

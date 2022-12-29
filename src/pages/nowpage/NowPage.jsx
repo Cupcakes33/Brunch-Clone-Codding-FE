@@ -36,6 +36,7 @@ const NowPage = () => {
             return (
               <ContentList
                 title={e.title}
+                postId={e.postId}
                 subtitle={e.subtitle}
                 content={e.content}
                 img={e.coverImage}
