@@ -27,7 +27,7 @@ const LoginModal = ({ onClose }) => {
   };
 
   const kakaoLoginBtnHandler = () => {
-    axios.get("https://brunchclone.shop/auth/kakao");
+    window.location.href = `https://brunchclone.shop/api/auth/kakao`;
   };
   return (
     <Modal onClose={onClose}>

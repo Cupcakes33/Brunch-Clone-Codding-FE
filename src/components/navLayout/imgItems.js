@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import logo from "../../styles/img/logo.png";
 import icons from "../../styles/img/icons.png";
 import icons2 from "../../styles/img/icons2.png";
-import spriteImg from "../../styles/img/spriteImg.png";
+import postIcon from "../../styles/img/postIcons.png";
 
 const logoDefault = styled.a`
   cursor: pointer;
@@ -88,7 +88,12 @@ const ItemKakaoLogo = styled.div`
   background-position: -51px -26px;
 `;
 
-
+const ItemImgUpload = styled.button`
+  width: 25px;
+  height: 25px;
+  background-image: url(${postIcon});
+  background-position: -29px -2px;
+`;
 
 export {
   ItemLogo,
@@ -101,6 +106,7 @@ export {
   ItemCommentBtn,
   ItemCloseBtn,
   ItemKakaoLogo,
+  ItemImgUpload,
 };
 
 // 이미지 스프라이트 : 웹에서 사용할 (거의 바뀌지 않는) 이미지를 하나로 묶어 관리하는 작업

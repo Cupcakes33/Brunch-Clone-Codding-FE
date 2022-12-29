@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Comment from "./CommentForm";
 import DetailNav from "../../components/navLayout/Nav/DetailNav";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { __getResult } from "../../redux/slices/detailSlice";
+import CommentForm from "./CommentForm";
 
 const Detail = () => {
   const { postid } = useParams();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const { isLoading, detail } = useSelector((state) => state.detailReducer);
-  console.log(isLoading);
-  console.log(detail);
 
-  // console.log("id", postid);
   const item = detail?.result;
   console.log("item", item);
 
@@ -22,13 +19,13 @@ const Detail = () => {
     dispatch(__getResult(postid));
   }, [dispatch]);
 
-  // if (isLoading) {
-  //   return <div>로딩중....</div>;
-  // }
+  if (isLoading) {
+    return <div>로딩중....</div>;
+  }
 
   return (
     <>
-      <DetailNav itemList={item} />
+      <DetailNav itemlist={item} />
       <DetailWrap>
         <StImg src={item?.coverImage} />
         <StTitle>{item?.title}</StTitle>
@@ -50,7 +47,7 @@ const Detail = () => {
             {visible ? "댓글" : "댓글"}
           </Stcommentbtn>
 
-          {visible && <Comment commentList={item} />}
+          {visible && <CommentForm commentlist={item} />}
         </StCommentdiv>
         <StUserDiv>
           <StUser>
@@ -137,7 +134,7 @@ const Stcommentbtn = styled.button`
 
 const StCommentdiv = styled.div`
   margin-top: 200px;
-  height: 200px;
+  height: 500px;
 `;
 
 const StContainer = styled.div`
@@ -162,11 +159,11 @@ const StUserDiv = styled.div`
 
   width: 100%;
   background-color: #fbfbfb;
-  margin: 0 auto;
+  margin-top: 50px auto;
 `;
 
 const StUser = styled.div`
-  margin-top: 150px;
+  margin-top: 300px;
   height: 300px;
 
   width: 100%;

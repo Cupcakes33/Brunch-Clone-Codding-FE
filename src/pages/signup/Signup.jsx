@@ -4,6 +4,8 @@ import { StSpan, StForm, StInput, StSubmitButton, StP } from "./style";
 import { useEffect, useState } from "react";
 import { addUserInfo } from "../../redux/slices/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { isFulfilled } from "@reduxjs/toolkit";
 
 const Signup = () => {
   const [signForm, setSignForm] = useState({
@@ -40,16 +42,23 @@ const Signup = () => {
     // console.log(isCheck);
   };
 
-  const signupMsg = useSelector((state) => state.login.alertMsg);
   const [isCheck, setIsCheck] = useState({
     iswriter: false,
     isEmail: false,
     isPassword: false,
   });
   // const writerRegExp = /^[a-zA-z0-9]{3,12}$/;
+  const nav = useNavigate();
   const dispatch = useDispatch();
   const submitOnclickHandler = () => {
-    dispatch(addUserInfo(signForm));
+    dispatch(addUserInfo(signForm)).then((res) => {
+      if (res.meta.requestStatus === "fulfilled") {
+        alert("회원가입성공");
+        nav("/now");
+      } else {
+        alert("회원가입실패");
+      }
+    });
     setSignForm({
       writer: "",
       email: "",

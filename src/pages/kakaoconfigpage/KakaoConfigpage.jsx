@@ -2,6 +2,7 @@ import img1 from "../../image/1.jpg";
 import CommonButton from "../../components/common/CommonButton";
 import CommonBox from "../../components/common/CommonBox";
 import styled from "styled-components";
+import { getUserInfo } from "../../redux/slices/loginSlice";
 import {
   StEmailIconSpan,
   StStrong,
@@ -15,8 +16,16 @@ import {
   StCheckboxSpan,
   StA,
 } from "./style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 const KakaoConfigpage = () => {
+  // const REDIRECT_URI = `https://brunchclone.shop/api/auth/kakao/callback`;
+  const REDIRECT_URI = `http://localhost:3000/api/auth/kakao/callback`;
+  const kakaoLogin = () => {
+    window.location.href = `https://brunchclone.shop/api/auth/kakao`;
+  };
   const [checkEvent, setCheckEvent] = useState(false);
   const checkboxEvent = (e) => {
     if (e.target.checked) {
@@ -26,8 +35,20 @@ const KakaoConfigpage = () => {
     }
   };
 
+  const navigator = useNavigate();
+  const { writer, email } = useSelector((state) => state.login.userInfo);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
+
+  const onClickMypageHandler = () => {
+    navigator("/mypage");
+  };
+
   return (
     <>
+    <PostNav/>
       <CommonBox
         margin={"103px auto 0"}
         width={"700px"}
@@ -43,7 +64,7 @@ const KakaoConfigpage = () => {
           <StStrong>계정</StStrong>
           <CommonBox margin={"12px 0px"}>
             <StEmailIconSpan />
-            <StSpan> hyemin@kakao.com</StSpan>
+            <StSpan>{email}</StSpan>
             <StEmailButton>카카오 계정 관리</StEmailButton>
           </CommonBox>
         </CommonBox>
@@ -55,12 +76,13 @@ const KakaoConfigpage = () => {
         >
           <StStrong>프로필</StStrong>
           <StProfileImg src={img1} />
-          <StUserStrong>혜민</StUserStrong>
-          <StUserP>혜민의 브런치입니다.</StUserP>
+          <StUserStrong>{writer}</StUserStrong>
+          <StUserP>{writer}의 브런치입니다.</StUserP>
           <StProfileDiv>
             <CommonButton
               colorType={"contents"}
               style={{ float: "right", width: "116px" }}
+              onClick={onClickMypageHandler}
             >
               프로필 편집
             </CommonButton>
@@ -96,9 +118,10 @@ const KakaoConfigpage = () => {
             )}
           </StEventDiv>
         </CommonBox>
-        <CommonBox>
+        {/* <CommonBox>
           <StA>탈퇴하기</StA>
-        </CommonBox>
+        </CommonBox> */}
+        {/* <button onClick={kakaoLogin}>카카오로그인</button> */}
       </CommonBox>
     </>
   );
