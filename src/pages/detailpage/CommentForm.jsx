@@ -29,6 +29,8 @@ const CommentForm = ({ commentlist }) => {
     dispatch(__deletecomment(commentId));
   };
 
+  console.log("135", comment.comm);
+
   return (
     <StCommentList>
       <StCommentCount>
@@ -72,26 +74,26 @@ const CommentForm = ({ commentlist }) => {
                     onClick={() =>
                       handleDelete({
                         commentId: comment.commentId,
-                        itemId: commentlist?.itemId,
+                        postId: commentlist?.postId,
                       })
                     }
                   >
                     삭제하기
                   </StButton>
                   {/* <StUpdateButton
-                    onClick={() => {
-                      setUpdate(true);
-                      setUpdateInputDiv(
-                        <UpdateInput
-                          update={update}
-                          commentId={comment.commentId}
-                          itemId={commentlist?.itemId}
-                        />
-                      );
-                    }}
-                  >
-                    수정
-                  </StUpdateButton> */}
+                      onClick={() => {
+                        setUpdate(true);
+                        setUpdateInputDiv(
+                          <UpdateInput
+                            update={update}
+                            commentId={comment.commentId}
+                            itemId={commentlist?.itemId}
+                          />
+                        );
+                      }}
+                    >
+                      수정
+                    </StUpdateButton> */}
                 </>
                 {/* )} */}
               </StCommentBox>
@@ -194,13 +196,17 @@ const StCommentBox = styled.div`
 `;
 
 const StContent = styled.div`
-  width: 700px;
-
+  width: 300px;
+  margin-left: 97px;
+  margin-top: 45px;
+  font-size: large;
   /* float: right; */
-  margin-top: 20px;
 `;
 
-const StButton = styled.button``;
+const StButton = styled.button`
+  float: right;
+  width: 70px;
+`;
 
 const StUpdateButton = styled.button``;
 
@@ -212,8 +218,9 @@ const StUserImg = styled.img`
 `;
 
 const StName = styled.div`
-  width: 500px;
+  width: 300px;
   float: left;
+  font-size: small;
   /* float: right; */
   margin-left: 100px;
 `;

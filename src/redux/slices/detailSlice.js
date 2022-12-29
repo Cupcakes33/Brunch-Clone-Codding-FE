@@ -78,13 +78,14 @@ export const __deletecomment = createAsyncThunk(
   "commentlist/deletecomment",
   async (payload, thunkApI) => {
     try {
-      const { commentid, postid } = payload;
-
+      const { commentId, postId } = payload;
+      console.log("12", payload);
       const res = await instance.delete(
-        `api/comment/comment-delete/${commentid}`
+        `api/comment/comment-delete/${commentId}`
       );
       if (res.status === 201) {
-        const result = await instance.get(`api/post/${postid}`);
+        const result = await instance.get(`api/post/${postId}`);
+        console.log("re", result);
 
         return thunkApI.fulfillWithValue(result.data);
       } else {
