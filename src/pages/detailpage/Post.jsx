@@ -36,8 +36,7 @@ const Post = () => {
   const onsubmitHandler = (e) => {
     const formData = new FormData();
     const { title, subtitle, content } = input;
-    console.log(title, subtitle, content);
-    console.log(fileimage);
+    
     formData.append("title", title);
     formData.append("subtitle", subtitle);
     formData.append("content", content);

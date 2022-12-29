@@ -22,7 +22,7 @@ const SerchBar = () => {
       ref={searchBarRef}
       onSubmit={(event) => {
         event.preventDefault();
-        console.log(searchInput);
+        
         // 여기에 검색 로직이 들어가야함
       }}
     >

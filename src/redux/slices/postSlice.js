@@ -49,7 +49,7 @@ export const postItem = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       let result;
-      console.log(data);
+
       const res = await instance.post("api/post", data);
 
       if (res.status === 201) {

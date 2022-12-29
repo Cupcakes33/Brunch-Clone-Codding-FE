@@ -43,10 +43,10 @@ const initialState = {
 export const __getResult = createAsyncThunk(
   "result/getresult",
   async (payload, thunkApI) => {
-    console.log("payload", payload);
+    
     try {
       const response = await instance.get(`api/post/${payload}`);
-      console.log("response", response);
+      
       return thunkApI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkApI.rejectWithValue(error);
@@ -57,12 +57,12 @@ export const __getResult = createAsyncThunk(
 export const __addComment = createAsyncThunk(
   "commentlist/addcomment",
   async (payload, thunkApI) => {
-    console.log("pay", payload);
+    
     try {
       const res = await instance.post(`api/comment/${payload.postId}`, {
         content: payload.content,
       });
-      console.log("res", res);
+      
 
       if (res.status === 201) {
         const respons = await instance.get(`api/post/${payload.postId}`);
@@ -79,13 +79,13 @@ export const __deletecomment = createAsyncThunk(
   async (payload, thunkApI) => {
     try {
       const { commentId, postId } = payload;
-      console.log("12", payload);
+      
       const res = await instance.delete(
         `api/comment/comment-delete/${commentId}`
       );
       if (res.status === 201) {
         const result = await instance.get(`api/post/${postId}`);
-        console.log("re", result);
+      
 
         return thunkApI.fulfillWithValue(result.data);
       } else {
@@ -109,7 +109,7 @@ export const detailSlice = createSlice({
     [__getResult.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.detail = action.payload;
-      console.log(state.detail);
+      
     },
     [__getResult.rejected]: (state, action) => {
       state.isLoading = false;

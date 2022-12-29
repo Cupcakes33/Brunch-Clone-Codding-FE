@@ -13,7 +13,7 @@ const Detail = () => {
   const { isLoading, detail } = useSelector((state) => state.detailReducer);
 
   const item = detail?.result;
-  console.log("item", item);
+  
 
   useEffect(() => {
     dispatch(__getResult(postid));

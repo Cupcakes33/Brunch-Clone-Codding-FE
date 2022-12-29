@@ -35,12 +35,12 @@ export const kakaoLogin = createAsyncThunk(
   async (code) => {
     try {
       const rest = await instance.get(`/api/auth/kakao/callback?code=${code}`);
-      console.log(rest);
+      
       const ACCESS_TOKEN = rest.data.accessToken;
       localStorage.setItem("token", ACCESS_TOKEN); // 로컬에 저장
       History.replace("/");
     } catch (error) {
-      console.log("소셜로그인에러", error);
+      
       window.alert("로그인에 실패하셨습니다.");
     }
   }
@@ -51,10 +51,10 @@ export const getUserInfo = createAsyncThunk(
   "loginSlice/getUserInfo",
   async (payload, thunkAPI) => {
     try {
-      console.log("1");
+      
       const rest = await instance.get(`/api/writer-info`);
       const data = rest.data.result;
-      console.log(data);
+      
       return data;
     } catch (error) {}
   }
@@ -64,7 +64,7 @@ export const getUserInfo = createAsyncThunk(
 export const addUserInfo = createAsyncThunk(
   "loginSlice/addUserInfo",
   async ({ writer, email, password }, thunkAPI) => {
-    console.log(writer, email, password);
+    
     try {
       const rest = await instance.post(`/api/user/register`, {
         writer: writer,
@@ -84,7 +84,7 @@ export const updateUserInfoData = createAsyncThunk(
         writer,
         selfIntro,
       });
-      console.log(rest);
+      
     } catch (error) {}
   }
 );

@@ -18,29 +18,7 @@ const Signup = () => {
     setSignForm((prev) => {
       return { ...prev, [name]: value };
     });
-    // if (emailCheck(signForm.email)) {
-    //   console.log("g");
-    //   setIsCheck({ ...isCheck, isEmail: true });
-    // } else {
-    //   setIsCheck({ ...isCheck, isEmail: false });
-    // }
-    // if (textCheck(signForm.writer)) {
-    //   setIsCheck({ ...isCheck, iswriter: true });
-    //   console.log("1");
-    // } else {
-    //   setIsCheck({ ...isCheck, iswriter: false });
-    //   console.log("2");
-    // }
-    // if (textCheck(signForm.password)) {
-    //   setIsCheck({ ...isCheck, isPassword: true });
-    //   console.log("3");
-    // } else {
-    //   setIsCheck({ ...isCheck, isPassword: false });
-    //   console.log("4");
-    // }
 
-    // console.log(isCheck);
-  };
 
   const [isCheck, setIsCheck] = useState({
     iswriter: false,

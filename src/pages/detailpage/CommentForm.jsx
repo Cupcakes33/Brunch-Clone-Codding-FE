@@ -6,7 +6,7 @@ import { __addComment, __deletecomment } from "../../redux/slices/detailSlice";
 
 const CommentForm = ({ commentlist }) => {
   const dispatch = useDispatch();
-  console.log(commentlist);
+  
   // const user = useSelector((state) => state.loginSlice);
 
   const [comment, setComment] = useState("");
@@ -22,14 +22,14 @@ const CommentForm = ({ commentlist }) => {
       content: comment,
     };
     dispatch(__addComment(payload));
-    // console.log("12", payload);
+    
   };
 
   const handleDelete = (commentId) => {
     dispatch(__deletecomment(commentId));
   };
 
-  console.log("135", comment.comm);
+  
 
   return (
     <StCommentList>
