@@ -10,12 +10,16 @@ const StNavigatorSpan = styled.span`
   background-image: url(${spriteImg});
   position: absolute;
   bottom: 0;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
+  right: -13px;
+  background-size: 210px;
+  background-position: 0px -218px;
+  cursor: pointer;
 `;
 const StNavigatorImg = styled.img`
-  width: 80px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 100px;
 `;
 const StNavigatorInput = styled.input`
@@ -98,6 +102,7 @@ const StProfileBtnClose = styled.button`
   height: 32px;
   background-color: #ffffff;
   min-width: 80px;
+  cursor: pointer;
 `;
 const StProfileBtnSave = styled.button`
   margin: 0 4px;
@@ -108,6 +113,7 @@ const StProfileBtnSave = styled.button`
   min-width: 80px;
   background-color: #ffffff;
   height: 32px;
+  cursor: pointer;
 `;
 export {
   StNavigatorDiv,

@@ -7,6 +7,7 @@ import Post from "./pages/detailpage/Post";
 import NowPage from "./pages/nowpage/NowPage";
 import Signup from "./pages/signup/Signup";
 import Secession from "./pages/secession/Secession";
+import KakaoRedirect from "./pages/kakaologin/KakaoRedirect";
 
 const Router = () => {
   return (
@@ -18,6 +19,8 @@ const Router = () => {
         <Route path="/secession" element={<Secession />} />
         <Route path="/now" element={<NowPage />} />
         <Route path="/" element={<Secession />} />
+        <Route path="/now" element={<NowPage />} />
+        <Route path="/api/auth/kakao/callback" element={<KakaoRedirect />} />
         <Route path="/post/:postid" element={<Detail />} />
         <Route path="/post" element={<Post />} />
       </Routes>
@@ -26,5 +29,3 @@ const Router = () => {
 };
 
 export default Router;
-
-// 추상화 단계에서 경로를 확인할 수 있도록
