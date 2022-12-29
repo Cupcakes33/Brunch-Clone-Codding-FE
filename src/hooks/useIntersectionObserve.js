@@ -12,6 +12,7 @@ const useIntersectionObserve = (url) => {
 
   const getMoreItem = async () => {
     const data = await axios.get(nextUrl);
+    setItemLists((itemLists) => itemLists.concat(data.data.result));
     if (nextItemId !== data.data.lastPost) {
       setItemLists((itemLists) => itemLists.concat(data.data.result));
     } else {

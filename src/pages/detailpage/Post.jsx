@@ -1,16 +1,38 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { postItem } from "../../redux/slices/postSlice";
 import useInputItem from "../../hooks/useInputItem";
-import style from "./style";
+import PostNav from "../../components/navLayout/Nav/PostNav";
 
 const Post = () => {
+  const imgRef = useRef(null);
   const { input, onChangeHandler, reset } = useInputItem();
 
   const dispatch = useDispatch();
-  const [coverimage, setCoverimage] = useState("");
+  const [fileimage, setFileImage] = useState("");
+
+  const saveFileImage = (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileimage);
+    setFileImage("");
+  };
+
+  const dataURItoBlob = (dataURI) => {
+    const splitDataURI = dataURI.split(",");
+    const byteString =
+      splitDataURI[0].indexOf("base64") >= 0
+        ? atob(splitDataURI[1])
+        : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++)
+      ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
+  };
 
   // const removeImage = (id) => {
   //   let newList = imageList.filter((image) => image.id !== id);
@@ -19,39 +41,25 @@ const Post = () => {
   // };
 
   const onsubmitHandler = (e) => {
-    e.preventDefault();
-
     const formData = new FormData();
     const { title, subtitle, content } = input;
     formData.append("title", title);
     formData.append("subtitle", subtitle);
     formData.append("content", content);
-    formData.append("coverimage", coverimage);
+    formData.append("coverimage", fileimage);
     dispatch(postItem(formData));
-  };
 
-  const [subtitle, setSubtitle] = useState("");
-  const onChangeSubtitle = (e) => {
-    e.preventDefault();
-    setSubtitle(e.target.value);
-  };
+    console.log(title, subtitle, content, formData);
 
-  const [content, setContent] = useState("");
-  const onChangeContent = (e) => {
-    e.preventDefault();
-    setContent(e.target.value);
-  };
-
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(coverimage);
-    setCoverimage("");
+    reset();
   };
 
   return (
     <>
-      <StContainer onSubmit={onChangeHandler}>
+      <PostNav />
+      <StContainer>
         <StTitle>
-          {coverimage && <Stimage src={coverimage}></Stimage>}
+          {fileimage && <Stimage src={fileimage}></Stimage>}
           <StInputDiv>
             <StTitleInput
               type="text"
@@ -63,7 +71,7 @@ const Post = () => {
             <StSubTitleInput
               type="text"
               name="subtitle"
-              value={subtitle}
+              value={input.subtitle}
               placeholder="소제목을 입력하세요"
               onChange={onChangeHandler}
             />
@@ -78,21 +86,19 @@ const Post = () => {
                 name="coverimage"
                 type="file"
                 accept="image/*"
-                onChange={(e) => {
-                  setCoverimage(e.target.files[0]);
-                }}
+                onChange={saveFileImage}
               />
             </StPostLogo>
           </StInputDiv>
         </StTitle>
         <StPost>
-          <button onClick={() => onsubmitHandler()}></button>
+          <button onClick={() => onsubmitHandler()}>작성하기</button>
           <StContent>
             <StContentInput
               type="text"
               name="content"
-              value={content}
-              onChange={onChangeContent}
+              value={input.content}
+              onChange={onChangeHandler}
             />
           </StContent>
         </StPost>
@@ -163,10 +169,11 @@ const StImgInput = styled.input`
   top: 30%;
 `;
 
-const StDelImg = styled.button`
+const StDelImg = styled.div`
   position: absolute;
   top: 50%;
 `;
+////////
 
 const StPostLogo = styled.div`
   margin-left: 1200px;
