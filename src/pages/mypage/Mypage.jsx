@@ -51,7 +51,6 @@ const Mypage = () => {
   const configNav = useNavigate();
   const dispatch = useDispatch();
   const onClickUserInfoDataHandler = (e) => {
-    
     dispatch(updateUserInfoData(userForm));
     configNav("/config");
   };

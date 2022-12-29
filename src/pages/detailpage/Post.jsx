@@ -36,7 +36,7 @@ const Post = () => {
   const onsubmitHandler = (e) => {
     const formData = new FormData();
     const { title, subtitle, content } = input;
-    
+
     formData.append("title", title);
     formData.append("subtitle", subtitle);
     formData.append("content", content);
@@ -44,7 +44,7 @@ const Post = () => {
 
     dispatch(postItem(formData));
     reset();
-    // navigate("/now");
+    navigate("/");
   };
 
   const imgUploadBtnHandler = () => {
