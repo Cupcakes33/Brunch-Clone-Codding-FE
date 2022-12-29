@@ -25,7 +25,7 @@ const Detail = () => {
 
   return (
     <>
-      <DetailNav itemList={item} />
+      <DetailNav itemlist={item} />
       <DetailWrap>
         <StImg src={item?.coverImage} />
         <StTitle>{item?.title}</StTitle>

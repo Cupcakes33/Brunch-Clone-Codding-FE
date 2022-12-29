@@ -37,11 +37,7 @@ const CommentForm = ({ commentlist }) => {
         <StCount>댓글{commentlist?.CommentsCount}</StCount>
       </StCommentCount>
       <Stcommentdiv>
-        <StImg
-          src={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
-          }
-        />
+        <StImg src={commentlist?.profileImage} />
         <StcommentInput>
           <Commentinput
             type="text"
@@ -55,11 +51,7 @@ const CommentForm = ({ commentlist }) => {
           {commentlist?.comment.map((comment, idx) => {
             return (
               <StCommentBox key={idx}>
-                <StUserImg
-                  src={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf3W_tqjny09z__DK0Z6Xe6bQsUUnTUBezGp5S7ohg&s"
-                  }
-                />
+                <StUserImg src={commentlist?.profileImage} />
                 <StName>
                   {commentlist?.writer} {comment.createdAt}
                 </StName>
