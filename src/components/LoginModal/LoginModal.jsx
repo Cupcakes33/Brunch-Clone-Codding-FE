@@ -5,16 +5,25 @@ import { ItemKakaoLogo, ItemLogoIcon, ItemLogo } from "../navLayout/imgItems";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { emailLogin } from "../../redux/slices/mainSlice";
+import { useRef } from "react";
 
 const LoginModal = ({ onClose }) => {
   const dispatch = useDispatch();
+  const pwRef = useRef(null);
 
   const LoginSubmitHandler = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");
     const password = formData.get("password");
-    dispatch(emailLogin({ email, password }));
+    dispatch(emailLogin({ email, password })).then((res) => {
+      const { requestStatus } = res.meta;
+      if (requestStatus === "fulfilled") {
+        window.location.reload();
+      } else {
+        pwRef.current.value = "";
+      }
+    });
   };
 
   const kakaoLoginBtnHandler = () => {
@@ -45,7 +54,7 @@ const LoginModal = ({ onClose }) => {
           </div>
           <div>
             <p>비밀번호</p>
-            <input type="password" name="password" />
+            <input type="password" name="password" ref={pwRef} />
           </div>
           <button>
             <ItemLogo />

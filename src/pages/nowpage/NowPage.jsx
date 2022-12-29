@@ -8,7 +8,6 @@ import Nav from "../../components/navLayout/Nav/Nav";
 import LoginModal from "../../components/LoginModal/LoginModal";
 
 const NowPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { itemLists, setTarget } = useIntersectionObserve(
     `https://brunchclone.shop/api/post`
   );
@@ -22,14 +21,6 @@ const NowPage = () => {
 
   return (
     <>
-      {isOpen && (
-        <LoginModal
-          open={isOpen}
-          onClose={() => {
-            setIsOpen(false);
-          }}
-        />
-      )}
       <Nav />
       <StScrollTopButton
         onClick={() => {
@@ -41,13 +32,6 @@ const NowPage = () => {
       <CommonBox width="100%" height="100px" />
       <StNowPageContainer>
         <StNowPageContentsWrapper>
-          <button
-            onClick={() => {
-              setIsOpen(true);
-            }}
-          >
-            modal
-          </button>
           {itemLists.map((e, n) => {
             return (
               <ContentList

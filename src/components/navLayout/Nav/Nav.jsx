@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ItemLogo, ItemServiceMenuBtn } from "../imgItems";
 import SideMenu from "../SideMenu/SideMenu";
 import CommonBox from "../../common/CommonBox";
@@ -10,7 +10,7 @@ import SerchBar from "../SearchBar/SearchBar";
 const Nav = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const scrollPosition = useScrollDetection(200);
-
+  
   return (
     <>
       <StNav scrolled={scrollPosition > 80 ? true : false}>

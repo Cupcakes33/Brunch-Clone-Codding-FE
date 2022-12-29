@@ -15,17 +15,9 @@ const Router = () => {
         <Route path="/config" element={<KakaoConfigpage />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route path="/secession" element={<Secession />} />
-
-        <Route path="/now" element={<NowPage />} />
-
-
-
-        <Route path="/" element={<Secession />} />
+        <Route path="/" element={<NowPage />} />
         <Route path="/post/:postid" element={<Detail />} />
-        <Route path="/secession" element={<Secession />} />
-
         <Route path="/post" element={<Post />} />
       </Routes>
     </BrowserRouter>
